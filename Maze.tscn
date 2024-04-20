@@ -3,10 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://muncher.tscn" id="1_pnx7g"]
 [ext_resource type="TileSet" uid="uid://0r73tac1owas" path="res://maze_tileSet.tres" id="1_ufyu8"]
 [ext_resource type="Texture2D" uid="uid://cm5bdnmuf5a5p" path="res://Textures/tilemap_patterns.png" id="3_bhr66"]
+[ext_resource type="PackedScene" uid="uid://clpvfnyw5vd1s" path="res://debug_point.tscn" id="4_4o3se"]
 [ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://enemy.tscn" id="4_e1s45"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s274d"]
-size = Vector2(4, 4)
 
 [sub_resource type="Environment" id="Environment_eyrxn"]
 background_mode = 1
@@ -28,7 +26,6 @@ layer_0/tile_data = PackedInt32Array(983055, 131073, 2, 983056, 196609, 2, 98305
 z_index = 1
 position = Vector2(168, 296)
 tile_map = NodePath("../TileMap")
-speed = 16.0
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("target", "tile_map") instance=ExtResource("4_e1s45")]
 z_index = 5
@@ -36,8 +33,7 @@ position = Vector2(56, 360)
 target = NodePath("../Muncher")
 tile_map = NodePath("../TileMap")
 
-[node name="DebugPointViz" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_s274d")
+[node name="NextTileDebug" parent="." instance=ExtResource("4_4o3se")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(168, 200)
@@ -60,3 +56,5 @@ offset_right = 408.0
 offset_bottom = 440.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[connection signal="debug_next_middle_tile_updated" from="Muncher" to="NextTileDebug" method="update_position"]

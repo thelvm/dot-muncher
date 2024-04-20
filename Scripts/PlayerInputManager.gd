@@ -1,9 +1,11 @@
-extends Node2D
+extends Node
 
-@onready var buffer_timeout = $DirectionBufferTimeout
+@export var input_buffer_timeout_delay: float = 0.25
+@onready var input_buffer_timer: Timer = $InputBufferTimeout
 var direction_buffer_pending: bool = false
 
 var requested_direction: Vector2 = Vector2.ZERO: set = _set_requested_direction
+
 signal direction_change_requested(direction: Vector2)
 
 func _unhandled_key_input(_event):
@@ -17,10 +19,11 @@ func _unhandled_key_input(_event):
 		requested_direction = Vector2.RIGHT
 	if requested_direction != Vector2.ZERO:
 		direction_buffer_pending = true
-		buffer_timeout.start()
+		input_buffer_timer.start()
 
-func _on_direction_buffer_timeout_timeout():
+func _on_input_buffer_timeout():
 	requested_direction = Vector2.ZERO
 
 func _set_requested_direction(new_value):
 	direction_change_requested.emit(new_value)
+	requested_direction = new_value

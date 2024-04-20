@@ -1,7 +1,7 @@
 class_name Util
 
-static func snap(value: int, snap_value: int , snap_mode: int = 0, offset: int = 0) -> int:
-	var adjusted_value: int = value - offset
+static func snap(value: float, snap_value: int , snap_mode: int = 0, offset: int = 0) -> float:
+	var adjusted_value: int = int(value) - offset
 	var remainder: int = adjusted_value % snap_value
 	var rounded_value: int
 	if snap_mode <= 0:
