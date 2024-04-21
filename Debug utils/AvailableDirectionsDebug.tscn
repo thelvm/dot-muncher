@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgg58pjbi3quw"]
+
+[ext_resource type="Script" path="res://Debug utils/AvailableDirectionsDebug.gd" id="1_sv8n0"]
+[ext_resource type="Texture2D" uid="uid://b4njppmasldc6" path="res://Debug utils/DirectionArrows.png" id="1_ury0c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3jb"]
+atlas = ExtResource("1_ury0c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_antpi"]
+atlas = ExtResource("1_ury0c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6jve"]
+atlas = ExtResource("1_ury0c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyre1"]
+atlas = ExtResource("1_ury0c")
+region = Rect2(16, 0, 16, 16)
+
+[node name="AvailableDirectionsDebug" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sv8n0")
+
+[node name="Up" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_2y3jb")
+
+[node name="Down" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_antpi")
+flip_v = true
+
+[node name="Left" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_l6jve")
+flip_h = true
+
+[node name="Right" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_kyre1")
+
+[node name="Past Center" type="Label" parent="."]
+layout_mode = 0
+offset_left = -114.0
+offset_top = -12.0
+offset_right = -26.0
+offset_bottom = 11.0
+text = "Past center"
