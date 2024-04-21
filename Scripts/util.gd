@@ -7,13 +7,13 @@ static func snap(value: float, snap_value: int , snap_mode: int = 0, offset: int
 	if snap_mode <= 0:
 		rounded_value = adjusted_value - remainder
 		if snap_mode == 0 and remainder >= snap_value / 2:
-			rounded_value += snap_value 
+			rounded_value += snap_value
 	elif snap_mode > 0:
 		if remainder != 0:
 			rounded_value = adjusted_value + (snap_value - remainder)
 		else:
 			rounded_value = adjusted_value
-	
+
 	return rounded_value + offset
 
 static func get_first_ancestor_of_type(current: Node, type) -> Node:
