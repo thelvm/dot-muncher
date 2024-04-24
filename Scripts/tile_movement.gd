@@ -7,86 +7,86 @@ signal debug_reached_intersection(is_past_center: bool)
 @export var tile_map: TileMap
 @export var speed: float = 16
 
-var tile_size: int
-var offset: int
+var _tile_size: int
+var _offset: int
 
 var current_direction: Vector2 = Vector2.RIGHT
-var requested_direction: Vector2
+var _requested_direction: Vector2
 
-var next_intersection_coords: Vector2: set = _set_next_intersection_coords
-var next_intersection_available_directions: DirectionMask
-var reached_intersection := false
-var is_next_intersection_coordinates_up_to_date := false
+var _next_intersection_coords: Vector2: set = _set_next_intersection_coords
+var _next_intersection_available_directions: DirectionMask
+var _reached_intersection := false
+var _is_next_intersection_coordinates_up_to_date := false
 
 
 func _ready() -> void:
 	assert(tile_map is TileMap, "No TileMap defined")
 
-	tile_size = tile_map.tile_set.tile_size.x
+	_tile_size = tile_map.tile_set.tile_size.x
 	# Tile size is always an even number
 	@warning_ignore("integer_division")
-	offset = tile_size / 2
+	_offset = _tile_size / 2
 
 
 func _physics_process(delta: float) -> void:
-	if not is_next_intersection_coordinates_up_to_date:
-		update_next_intersetion_coordinates()
-	move(delta)
+	if not _is_next_intersection_coordinates_up_to_date:
+		_update_next_intersetion_coordinates()
+	_move(delta)
 
 
-func move(delta: float) -> void:
-	if not reached_intersection:
-		reached_intersection = (next_intersection_coords - global_position).dot(current_direction) <= 0
+func update_requested_direction(new_requested_direction: Vector2) -> void:
+	_requested_direction = new_requested_direction
+
+
+func _move(delta: float) -> void:
+	if not _reached_intersection:
+		_reached_intersection = (_next_intersection_coords - global_position).dot(current_direction) <= 0
 		# TODO fix next intersection not behaving with direction change on same tile as intersection
 		# Allows for reversing in straight lines
 		#if current_direction == -requested_direction:
 			#current_direction = requested_direction
 			#is_next_intersection_coordinates_up_to_date = false
 	
-	if reached_intersection:
-		is_next_intersection_coordinates_up_to_date = false
-		reached_intersection = false
-		match requested_direction:
+	if _reached_intersection:
+		_is_next_intersection_coordinates_up_to_date = false
+		_reached_intersection = false
+		match _requested_direction:
 			Vector2.UP:
-				if next_intersection_available_directions.has_direction(DirectionMask.UP):
+				if _next_intersection_available_directions.has_direction(DirectionMask.UP):
 					current_direction = Vector2.UP
 			Vector2.DOWN:
-				if next_intersection_available_directions.has_direction(DirectionMask.DOWN):
+				if _next_intersection_available_directions.has_direction(DirectionMask.DOWN):
 					current_direction = Vector2.DOWN
 			Vector2.LEFT:
-				if next_intersection_available_directions.has_direction(DirectionMask.LEFT):
+				if _next_intersection_available_directions.has_direction(DirectionMask.LEFT):
 					current_direction = Vector2.LEFT
 			Vector2.RIGHT:
-				if next_intersection_available_directions.has_direction(DirectionMask.RIGHT):
+				if _next_intersection_available_directions.has_direction(DirectionMask.RIGHT):
 					current_direction = Vector2.RIGHT
 			_:
 				var current_direction_as_mask := DirectionMask.new()
 				current_direction_as_mask.from_vector2(current_direction)
-				if not next_intersection_available_directions.has_direction(current_direction_as_mask.bitmask):
+				if not _next_intersection_available_directions.has_direction(current_direction_as_mask.bitmask):
 					current_direction = Vector2.ZERO
-					is_next_intersection_coordinates_up_to_date = true
-					reached_intersection = true
+					_is_next_intersection_coordinates_up_to_date = true
+					_reached_intersection = true
 	
 	position += current_direction * speed * delta
 
 
 	match current_direction:
 		Vector2.UP, Vector2.DOWN:
-			position.x = Util.snap(position.x, tile_size, 0, offset)
+			position.x = Util.snap(position.x, _tile_size, 0, _offset)
 		Vector2.LEFT, Vector2.RIGHT:
-			position.y = Util.snap(position.y, tile_size, 0, offset)
+			position.y = Util.snap(position.y, _tile_size, 0, _offset)
 		_:
-			position.y = Util.snap(position.y, tile_size, 0, offset)
-			position.x = Util.snap(position.x, tile_size, 0, offset)
-
-
-func update_requested_direction(new_requested_direction: Vector2) -> void:
-	requested_direction = new_requested_direction
+			position.y = Util.snap(position.y, _tile_size, 0, _offset)
+			position.x = Util.snap(position.x, _tile_size, 0, _offset)
 
 
 ## Calculates the coordinates of the next intersection along
 ## the player's current direction.
-func update_next_intersetion_coordinates() -> void:
+func _update_next_intersetion_coordinates() -> void:
 	# Get coords of the tile at the current player's position
 	var current_tile_coords: Vector2i
 	current_tile_coords = tile_map.local_to_map(tile_map.to_local(self.global_position))
@@ -116,12 +116,12 @@ func update_next_intersetion_coordinates() -> void:
 		
 		# If the tile is not a corridor, mark it as the next intersection
 		if not (current_tile_available_directions.bitmask == DirectionMask.UP + DirectionMask.DOWN or current_tile_available_directions.bitmask == DirectionMask.LEFT + DirectionMask.RIGHT):
-			next_intersection_coords = tile_map.to_global(tile_map.map_to_local(current_tile_coords))
-			next_intersection_available_directions = current_tile_available_directions
+			_next_intersection_coords = tile_map.to_global(tile_map.map_to_local(current_tile_coords))
+			_next_intersection_available_directions = current_tile_available_directions
 			intersection_found = true
-			is_next_intersection_coordinates_up_to_date = true
+			_is_next_intersection_coordinates_up_to_date = true
 
 
 func _set_next_intersection_coords(new_value: Vector2) -> void:
-	next_intersection_coords = new_value
-	debug_next_intersection_coords_updated.emit(next_intersection_coords)
+	_next_intersection_coords = new_value
+	debug_next_intersection_coords_updated.emit(_next_intersection_coords)
