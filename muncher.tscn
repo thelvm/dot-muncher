@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctwaf51ulv563"]
 
 [ext_resource type="Texture2D" uid="uid://361axe6upcnf" path="res://Textures/Muncher_placeholder.png" id="1_mg5s2"]
-[ext_resource type="Script" path="res://Scripts/TileMovement.gd" id="1_thj5s"]
+[ext_resource type="Script" path="res://Scripts/tile_movement.gd" id="1_thj5s"]
 [ext_resource type="PackedScene" uid="uid://bqu14d7qakmer" path="res://player_input_manager.tscn" id="3_hledr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_30p6o"]

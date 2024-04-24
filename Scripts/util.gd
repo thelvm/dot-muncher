@@ -6,7 +6,7 @@ static func snap(value: float, snap_value: int , snap_mode: int = 0, offset: int
 	var rounded_value: int
 	if snap_mode <= 0:
 		rounded_value = adjusted_value - remainder
-		if snap_mode == 0 and remainder >= snap_value / 2:
+		if snap_mode == 0 and remainder >= snap_value / 2.0:
 			rounded_value += snap_value
 	elif snap_mode > 0:
 		if remainder != 0:
@@ -16,9 +16,9 @@ static func snap(value: float, snap_value: int , snap_mode: int = 0, offset: int
 
 	return rounded_value + offset
 
-static func get_first_ancestor_of_type(current: Node, type) -> Node:
+static func get_first_ancestor_of_type(current: Node, type: Variant) -> Node:
 	while current != null:
-		if is_instance_of(current, TileMap):
+		if is_instance_of(current, type):
 			return current
 		current = current.get_parent()
 	return null

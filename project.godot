@@ -18,7 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Panku="*res://addons/panku_console/console.tscn"
-GameManager="*res://Scripts/GameManager.gd"
+GameManager="*res://Scripts/game_manager.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
 
 [display]
 

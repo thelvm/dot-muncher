@@ -14,11 +14,11 @@ enum DirectionMask {
 @onready var right_texture: TextureRect = $Right
 @onready var past_center_label: Label = $"Past Center"
 
-func update_avaibale_directions(direction_mask: int):
+func update_avaibale_directions(direction_mask: int) -> void:
 	up_texture.visible = (direction_mask & DirectionMask.UP) != 0
 	down_texture.visible = (direction_mask & DirectionMask.DOWN) != 0
 	left_texture.visible = (direction_mask & DirectionMask.LEFT) != 0
 	right_texture.visible = (direction_mask & DirectionMask.RIGHT) != 0
 
-func update_past_center(is_past_center: bool):
+func update_past_center(is_past_center: bool) -> void:
 	past_center_label.visible = is_past_center
