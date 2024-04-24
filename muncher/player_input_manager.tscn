@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqu14d7qakmer"]
 
-[ext_resource type="Script" path="res://Scripts/player_input_manager.gd" id="1_kigb8"]
+[ext_resource type="Script" path="res://muncher/player_input_manager.gd" id="1_kigb8"]
 
 [node name="PlayerInputManager" type="Node"]
 script = ExtResource("1_kigb8")

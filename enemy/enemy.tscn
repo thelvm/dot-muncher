@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2h2rjwefxke8"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_6bbnx"]
-[ext_resource type="Texture2D" uid="uid://82qqnoyutfsr" path="res://Textures/tilemap_prompts.png" id="2_07fkc"]
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_6bbnx"]
+[ext_resource type="Texture2D" uid="uid://82qqnoyutfsr" path="res://gui/tilemap_prompts.png" id="2_07fkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go3rd"]
 size = Vector2(16, 16)

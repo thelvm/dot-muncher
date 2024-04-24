@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=18 format=3 uid="uid://0r73tac1owas"]
 
-[ext_resource type="Texture2D" uid="uid://b5g5srf0faieb" path="res://Textures/tilemap_placeholder.png" id="1_kk0dk"]
+[ext_resource type="Texture2D" uid="uid://b5g5srf0faieb" path="res://maze/tilemap_placeholder.png" id="1_iiggh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6yuwj"]
 vertices = PackedVector2Array(8, -3, 8, 3, 3, 3, 3, -3, 3, 8, -3, 8, -3, 3, -3, -3)
@@ -108,7 +108,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qirnw"]
-texture = ExtResource("1_kk0dk")
+texture = ExtResource("1_iiggh")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0

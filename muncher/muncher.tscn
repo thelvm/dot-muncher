@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctwaf51ulv563"]
 
-[ext_resource type="Texture2D" uid="uid://361axe6upcnf" path="res://Textures/Muncher_placeholder.png" id="1_mg5s2"]
-[ext_resource type="Script" path="res://Scripts/tile_movement.gd" id="1_thj5s"]
-[ext_resource type="PackedScene" uid="uid://bqu14d7qakmer" path="res://player_input_manager.tscn" id="3_hledr"]
+[ext_resource type="Texture2D" uid="uid://361axe6upcnf" path="res://muncher/Muncher_placeholder.png" id="1_mg5s2"]
+[ext_resource type="Script" path="res://scripts/tile_movement.gd" id="1_thj5s"]
+[ext_resource type="PackedScene" uid="uid://bqu14d7qakmer" path="res://muncher/player_input_manager.tscn" id="3_hledr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_30p6o"]
 animations = [{
@@ -24,4 +24,4 @@ sprite_frames = SubResource("SpriteFrames_30p6o")
 
 [node name="PlayerInputManager" parent="." instance=ExtResource("3_hledr")]
 
-[connection signal="direction_change_requested" from="PlayerInputManager" to="." method="update_requested_direction"]
+[connection signal="requested_direction_changed" from="PlayerInputManager" to="." method="update_requested_direction"]

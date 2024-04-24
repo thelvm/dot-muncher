@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi0b32yrrqwmb"
-path="res://.godot/imported/point_debug.png-d9682e4694457b249fc0fcde6350d6c4.ctex"
+uid="uid://361axe6upcnf"
+path="res://.godot/imported/Muncher_placeholder.png-5847cf9e32a4bbe9dfb56199be76b30a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/point_debug.png"
-dest_files=["res://.godot/imported/point_debug.png-d9682e4694457b249fc0fcde6350d6c4.ctex"]
+source_file="res://muncher/Muncher_placeholder.png"
+dest_files=["res://.godot/imported/Muncher_placeholder.png-5847cf9e32a4bbe9dfb56199be76b30a.ctex"]
 
 [params]
 

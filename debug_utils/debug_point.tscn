@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://clpvfnyw5vd1s"]
 
-[ext_resource type="Script" path="res://DebugPoint.gd" id="1_8h8vo"]
-[ext_resource type="Texture2D" uid="uid://bi0b32yrrqwmb" path="res://Textures/point_debug.png" id="2_3ph7r"]
+[ext_resource type="Script" path="res://debug_utils/debug_point.gd" id="1_8h8vo"]
+[ext_resource type="Texture2D" uid="uid://bi0b32yrrqwmb" path="res://debug_utils/point_debug.png" id="2_3ph7r"]
 
 [node name="Node2D" type="Node2D"]
 z_index = 100

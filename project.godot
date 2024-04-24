@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="Dot Muncher"
-run/main_scene="res://Maze.tscn"
+run/main_scene="res://maze/maze.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://dot_muncher_cover_ai.png"
+config/icon="res://dot_muncher_cover_ai.png"
 
 [autoload]
 
 Panku="*res://addons/panku_console/console.tscn"
-GameManager="*res://Scripts/game_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [debug]
 
@@ -38,6 +39,16 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://debug_utils/": "gray",
+"res://enemy/": "red",
+"res://maze/": "pink",
+"res://muncher/": "green",
+"res://scripts/": "gray"
+}
 
 [input]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5g5srf0faieb"
-path="res://.godot/imported/tilemap_placeholder.png-cf579774273850e697dea3c91ea56237.ctex"
+uid="uid://bi0b32yrrqwmb"
+path="res://.godot/imported/point_debug.png-c8fb048f2500df57476ff4a60a41fc07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/tilemap_placeholder.png"
-dest_files=["res://.godot/imported/tilemap_placeholder.png-cf579774273850e697dea3c91ea56237.ctex"]
+source_file="res://debug_utils/point_debug.png"
+dest_files=["res://.godot/imported/point_debug.png-c8fb048f2500df57476ff4a60a41fc07.ctex"]
 
 [params]
 

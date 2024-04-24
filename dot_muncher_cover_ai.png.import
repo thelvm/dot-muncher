@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4njppmasldc6"
-path="res://.godot/imported/DirectionArrows.png-9fb7e212c9192322446cda5884ca0b9f.ctex"
+uid="uid://tveslj64cacg"
+path="res://.godot/imported/dot_muncher_cover_ai.png-1dfa38f3c58d75d2bf3bd61b6c196cff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Debug utils/DirectionArrows.png"
-dest_files=["res://.godot/imported/DirectionArrows.png-9fb7e212c9192322446cda5884ca0b9f.ctex"]
+source_file="res://dot_muncher_cover_ai.png"
+dest_files=["res://.godot/imported/dot_muncher_cover_ai.png-1dfa38f3c58d75d2bf3bd61b6c196cff.ctex"]
 
 [params]
 
