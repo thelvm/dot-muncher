@@ -7,17 +7,7 @@
 script = ExtResource("1_6bbnx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_07fkc")
 region_enabled = true
 region_rect = Rect2(0, 240, 16, 16)
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 1.0
-target_desired_distance = 8.0
-path_postprocessing = 1
-debug_enabled = true
-
-[node name="PathUpdateTimer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="PathUpdateTimer" to="." method="update_target_position"]

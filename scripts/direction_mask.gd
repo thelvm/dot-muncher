@@ -3,11 +3,14 @@ class_name DirectionMask extends RefCounted
 
 const NONE = 0b0000
 const UP = 0b0001
-const DOWN = 0b0010
-const LEFT = 0b0100
-const RIGHT = 0b1000
+const RIGHT = 0b0010
+const DOWN = 0b0100
+const LEFT = 0b1000
 
 var bitmask: int = 0
+
+func _init(source_vec2: Vector2 = Vector2.ZERO) -> void:
+	bitmask = from_vector2(source_vec2)
 
 
 ## Checks if direction(s) bit is set in the mask.

@@ -29,8 +29,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not _is_next_intersection_coordinates_up_to_date:
-		_update_next_intersetion_coordinates()
+	_update_next_intersetion_coordinates()
+	_update_reached_intersection()
 	_move(delta)
 
 
@@ -39,14 +39,6 @@ func update_requested_direction(new_requested_direction: Vector2) -> void:
 
 
 func _move(delta: float) -> void:
-	if not _reached_intersection:
-		_reached_intersection = (_next_intersection_coords - global_position).dot(current_direction) <= 0
-		# TODO fix next intersection not behaving with direction change on same tile as intersection
-		# Allows for reversing in straight lines
-		#if current_direction == -requested_direction:
-			#current_direction = requested_direction
-			#is_next_intersection_coordinates_up_to_date = false
-	
 	if _reached_intersection:
 		_is_next_intersection_coordinates_up_to_date = false
 		_reached_intersection = false
@@ -87,6 +79,10 @@ func _move(delta: float) -> void:
 ## Calculates the coordinates of the next intersection along
 ## the player's current direction.
 func _update_next_intersetion_coordinates() -> void:
+	if _is_next_intersection_coordinates_up_to_date:
+		return
+	
+	# TODO fix next intersection not behaving with direction change on same tile as intersection
 	# Get coords of the tile at the current player's position
 	var current_tile_coords: Vector2i
 	current_tile_coords = tile_map.local_to_map(tile_map.to_local(self.global_position))
@@ -120,6 +116,11 @@ func _update_next_intersetion_coordinates() -> void:
 			_next_intersection_available_directions = current_tile_available_directions
 			intersection_found = true
 			_is_next_intersection_coordinates_up_to_date = true
+
+
+func _update_reached_intersection() -> void:
+	if not _reached_intersection:
+		_reached_intersection = (_next_intersection_coords - global_position).dot(current_direction) <= 0
 
 
 func _set_next_intersection_coords(new_value: Vector2) -> void:

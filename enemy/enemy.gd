@@ -1,18 +1,85 @@
-class_name Enemy extends Node2D
+class_name EnemyController extends TileMovement
 
-enum Mode {
-	IDLE,
-	HUNT,
-	SCATTER,
-	COWER
-}
+signal hunt_target_updated(new_target: Vector2)
 
-@export var target: Node2D
+const MODE_HUNT = 0
+const MODE_SCATTER = 1
+const MODE_PANIC = 2
+const MODE_GO_HOME = 3
 
-var _current_mode: Mode = Mode.IDLE
+@export var muncher: TileMovement
+@export var scatter_position: Node2D
+@export var home_position: Node2D
 
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+var _target: Vector2: set = _set_target
+var _current_mode: int = MODE_SCATTER
 
 
-func update_target_position():
-	nav_agent.target_position = target.global_position
+func _ready() -> void:
+	super._ready()
+	_target = scatter_position.global_position
+
+
+func _physics_process(delta: float) -> void:
+	_update_next_intersetion_coordinates()
+	_update_reached_intersection()
+	if _reached_intersection and _current_mode == MODE_HUNT:
+		_update_hunt_target()
+	_update_best_direction()
+	_move(delta)
+
+
+func change_mode(new_mode: int) -> void:
+	# TODO add turn around
+	_current_mode = new_mode
+	match _current_mode:
+		MODE_HUNT:
+			_update_hunt_target()
+		MODE_SCATTER:
+			_target = scatter_position.global_position
+		MODE_PANIC:
+			pass # TODO
+		MODE_GO_HOME:
+			_target = home_position.global_position
+
+
+func _update_best_direction() -> void:
+	if not _reached_intersection:
+		return
+	
+	var min_distance_to_target: float = 100_000_000
+	var best_direction: Vector2
+	if _next_intersection_available_directions.has_direction(DirectionMask.UP):
+		var tile_position: Vector2 = global_position + (Vector2.UP * _tile_size)
+		var distance_to_target: float = tile_position.distance_to(_target)
+		if distance_to_target < min_distance_to_target:
+			min_distance_to_target = distance_to_target
+			best_direction = Vector2.UP
+	if _next_intersection_available_directions.has_direction(DirectionMask.RIGHT):
+		var tile_position: Vector2 = global_position + (Vector2.RIGHT * _tile_size)
+		var distance_to_target: float = tile_position.distance_to(_target)
+		if distance_to_target < min_distance_to_target:
+			min_distance_to_target = distance_to_target
+			best_direction = Vector2.RIGHT
+	if _next_intersection_available_directions.has_direction(DirectionMask.DOWN):
+		var tile_position: Vector2 = global_position + (Vector2.DOWN * _tile_size)
+		var distance_to_target: float = tile_position.distance_to(_target)
+		if distance_to_target < min_distance_to_target:
+			min_distance_to_target = distance_to_target
+			best_direction = Vector2.DOWN
+	if _next_intersection_available_directions.has_direction(DirectionMask.LEFT):
+		var tile_position: Vector2 = global_position + (Vector2.LEFT * _tile_size)
+		var distance_to_target: float = tile_position.distance_to(_target)
+		if distance_to_target < min_distance_to_target:
+			min_distance_to_target = distance_to_target
+			best_direction = Vector2.LEFT
+	
+	current_direction = best_direction
+
+func _update_hunt_target() -> void:
+	_target = muncher.global_position
+
+
+func _set_target(new_value: Vector2) -> void:
+	_target = new_value
+	hunt_target_updated.emit(_target)
