@@ -49,7 +49,7 @@ func _update_best_direction() -> void:
 	
 	var available_directions: DirectionMask = DirectionMask.new()
 	available_directions.bitmask = _next_intersection_available_directions.bitmask
-	var current_direction_as_mask = DirectionMask.new()
+	var current_direction_as_mask := DirectionMask.new()
 	current_direction_as_mask.from_vector2(-current_direction)
 	available_directions.remove_direction(current_direction_as_mask.bitmask)
 	
