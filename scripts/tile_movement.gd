@@ -35,7 +35,14 @@ func _physics_process(delta: float) -> void:
 
 
 func update_requested_direction(new_requested_direction: Vector2) -> void:
+	if new_requested_direction == -current_direction:
+		turn_around()
 	_requested_direction = new_requested_direction
+
+
+func turn_around() -> void:
+	current_direction = -current_direction
+	_is_next_intersection_coordinates_up_to_date = false
 
 
 func _move(delta: float) -> void:
@@ -83,8 +90,13 @@ func _update_next_intersetion_coordinates() -> void:
 	
 	# TODO fix next intersection not behaving with direction change on same tile as intersection
 	# Get coords of the tile at the current player's position
-	var current_tile_coords: Vector2i
-	current_tile_coords = tile_map.local_to_map(tile_map.to_local(self.global_position))
+	var current_tile_map_coords: Vector2i
+	current_tile_map_coords = tile_map.local_to_map(tile_map.to_local(self.global_position))
+	
+	var is_past_center_of_tile: bool = (tile_map.to_global(tile_map.map_to_local(current_tile_map_coords)) - global_position).dot(current_direction) <= 0
+	
+	if not is_past_center_of_tile:
+		current_tile_map_coords -= Vector2i(current_direction)
 	
 	# Test every tile in a straight line in the direction of the player
 	# and return the first intersection found
@@ -94,32 +106,31 @@ func _update_next_intersetion_coordinates() -> void:
 		current_direction_as_mask.from_vector2(current_direction)
 		match current_direction_as_mask.bitmask:
 			DirectionMask.UP:
-				current_tile_coords = tile_map.get_neighbor_cell(current_tile_coords,
+				current_tile_map_coords = tile_map.get_neighbor_cell(current_tile_map_coords,
 						TileSet.CELL_NEIGHBOR_TOP_SIDE)
 			DirectionMask.DOWN:
-				current_tile_coords = tile_map.get_neighbor_cell(current_tile_coords,
+				current_tile_map_coords = tile_map.get_neighbor_cell(current_tile_map_coords,
 						TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
 			DirectionMask.LEFT:
-				current_tile_coords = tile_map.get_neighbor_cell(current_tile_coords,
+				current_tile_map_coords = tile_map.get_neighbor_cell(current_tile_map_coords,
 						TileSet.CELL_NEIGHBOR_LEFT_SIDE)
 			DirectionMask.RIGHT:
-				current_tile_coords = tile_map.get_neighbor_cell(current_tile_coords,
+				current_tile_map_coords = tile_map.get_neighbor_cell(current_tile_map_coords,
 						TileSet.CELL_NEIGHBOR_RIGHT_SIDE)
 		
 		var current_tile_available_directions := DirectionMask.new()
-		current_tile_available_directions.bitmask = tile_map.get_cell_tile_data(0, current_tile_coords).get_custom_data_by_layer_id(0) as int
+		current_tile_available_directions.bitmask = tile_map.get_cell_tile_data(0, current_tile_map_coords).get_custom_data_by_layer_id(0) as int
 		
 		# If the tile is not a corridor, mark it as the next intersection
 		if not (current_tile_available_directions.bitmask == DirectionMask.UP + DirectionMask.DOWN or current_tile_available_directions.bitmask == DirectionMask.LEFT + DirectionMask.RIGHT):
-			_next_intersection_coords = tile_map.to_global(tile_map.map_to_local(current_tile_coords))
+			_next_intersection_coords = tile_map.to_global(tile_map.map_to_local(current_tile_map_coords))
 			_next_intersection_available_directions = current_tile_available_directions
 			intersection_found = true
 			_is_next_intersection_coordinates_up_to_date = true
 
 
 func _update_reached_intersection() -> void:
-	if not _reached_intersection:
-		_reached_intersection = (_next_intersection_coords - global_position).dot(current_direction) <= 0
+	_reached_intersection = (_next_intersection_coords - global_position).dot(current_direction) <= 0
 
 
 func _set_next_intersection_coords(new_value: Vector2) -> void:
