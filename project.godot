@@ -13,6 +13,7 @@ config_version=5
 config/name="Dot Muncher"
 run/main_scene="res://maze/maze.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://dot_muncher_cover_ai.png"
 config/icon="res://dot_muncher_cover_ai.png"
 

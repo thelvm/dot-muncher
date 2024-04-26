@@ -55,13 +55,12 @@ func _move(delta: float) -> void:
 			Vector2.RIGHT:
 				if _next_intersection_available_directions.has_direction(DirectionMask.RIGHT):
 					current_direction = Vector2.RIGHT
-			_:
-				var current_direction_as_mask := DirectionMask.new()
-				current_direction_as_mask.from_vector2(current_direction)
-				if not _next_intersection_available_directions.has_direction(current_direction_as_mask.bitmask):
-					current_direction = Vector2.ZERO
-					_is_next_intersection_coordinates_up_to_date = true
-					_reached_intersection = true
+		var current_direction_as_mask := DirectionMask.new()
+		current_direction_as_mask.from_vector2(current_direction)
+		if not _next_intersection_available_directions.has_direction(current_direction_as_mask.bitmask):
+			current_direction = Vector2.ZERO
+			_is_next_intersection_coordinates_up_to_date = true
+			_reached_intersection = true
 	
 	position += current_direction * speed * delta
 
