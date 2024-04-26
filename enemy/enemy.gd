@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
 
 func change_mode(new_mode: int) -> void:
-	# TODO add turn around
+	turn_around()
 	_current_mode = new_mode
 	match _current_mode:
 		MODE_HUNT:
@@ -47,27 +47,33 @@ func _update_best_direction() -> void:
 	if not _reached_intersection:
 		return
 	
+	var available_directions: DirectionMask = DirectionMask.new()
+	available_directions.bitmask = _next_intersection_available_directions.bitmask
+	var current_direction_as_mask = DirectionMask.new()
+	current_direction_as_mask.from_vector2(-current_direction)
+	available_directions.remove_direction(current_direction_as_mask.bitmask)
+	
 	var min_distance_to_target: float = 100_000_000
 	var best_direction: Vector2
-	if _next_intersection_available_directions.has_direction(DirectionMask.UP):
+	if available_directions.has_direction(DirectionMask.UP):
 		var tile_position: Vector2 = global_position + (Vector2.UP * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.UP
-	if _next_intersection_available_directions.has_direction(DirectionMask.RIGHT):
+	if available_directions.has_direction(DirectionMask.RIGHT):
 		var tile_position: Vector2 = global_position + (Vector2.RIGHT * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.RIGHT
-	if _next_intersection_available_directions.has_direction(DirectionMask.DOWN):
+	if available_directions.has_direction(DirectionMask.DOWN):
 		var tile_position: Vector2 = global_position + (Vector2.DOWN * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.DOWN
-	if _next_intersection_available_directions.has_direction(DirectionMask.LEFT):
+	if available_directions.has_direction(DirectionMask.LEFT):
 		var tile_position: Vector2 = global_position + (Vector2.LEFT * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
