@@ -5,7 +5,6 @@
 [ext_resource type="TileSet" uid="uid://ckgua88mvwg6x" path="res://maze/maze_tileset.tres" id="2_2pwfs"]
 [ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://muncher/muncher.tscn" id="2_sc86c"]
 [ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause/pause_menu.tscn" id="3_uy6qd"]
-[ext_resource type="PackedScene" uid="uid://clpvfnyw5vd1s" path="res://debug_utils/debug_point.tscn" id="4_42oab"]
 [ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://enemy/enemy.tscn" id="4_uir3e"]
 [ext_resource type="PackedScene" uid="uid://cfwancfu8ajok" path="res://gui/game_over/game_over_menu.tscn" id="4_yh2a8"]
 [ext_resource type="Script" path="res://enemy/ambusher.gd" id="5_gwspy"]
@@ -13,6 +12,7 @@
 [ext_resource type="Script" path="res://enemy/strategist.gd" id="6_l7bjv"]
 [ext_resource type="Script" path="res://enemy/coward.gd" id="7_rlevi"]
 [ext_resource type="Script" path="res://maze/DotsRemainingUI.gd" id="10_ql0uq"]
+[ext_resource type="PackedScene" uid="uid://bn47r17ujlo40" path="res://teleporter/teleporter.tscn" id="13_021iy"]
 
 [sub_resource type="Environment" id="Environment_eyrxn"]
 background_mode = 1
@@ -139,15 +139,20 @@ position = Vector2(456, 488)
 [node name="Home" type="Marker2D" parent="."]
 position = Vector2(168, 200)
 
-[node name="NextTileDebug" parent="." instance=ExtResource("4_42oab")]
-position = Vector2(-24, 0)
+[node name="TeleporterLeft" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("13_021iy")]
+destination = NodePath("../TeleportTargetLeft")
 
-[node name="NextIntersectionMuncher" parent="." instance=ExtResource("4_42oab")]
-position = Vector2(-40, -16)
-color = Color(0.392157, 1, 0, 1)
+[node name="TeleportTargetLeft" type="Marker2D" parent="."]
+position = Vector2(440, 232)
+
+[node name="TeleporterRight" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("13_021iy")]
+position = Vector2(456, 232)
+destination = NodePath("../TeleportTargetRight")
+
+[node name="TeleportTargetRight" type="Marker2D" parent="."]
+position = Vector2(8, 232)
 
 [connection signal="mode_changed" from="." to="Hunter" method="change_mode"]
 [connection signal="mode_changed" from="." to="Ambusher" method="change_mode"]
 [connection signal="mode_changed" from="." to="Stretegist" method="change_mode"]
 [connection signal="mode_changed" from="." to="Coward" method="change_mode"]
-[connection signal="hunt_target_updated" from="Stretegist" to="NextTileDebug" method="update_position"]

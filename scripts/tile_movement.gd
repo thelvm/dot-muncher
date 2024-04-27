@@ -136,3 +136,9 @@ func _update_reached_intersection() -> void:
 func _set_next_intersection_coords(new_value: Vector2) -> void:
 	_next_intersection_coords = new_value
 	debug_next_intersection_coords_updated.emit(_next_intersection_coords)
+
+
+func _on_teleporter_entered(area: Area2D) -> void:
+	if area is Teleporter:
+		global_position = area.destination.global_position
+		_is_next_intersection_coordinates_up_to_date = false

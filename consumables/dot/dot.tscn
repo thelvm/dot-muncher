@@ -14,7 +14,7 @@ modulate = Color(1, 1, 0, 1)
 texture = ExtResource("1_twhxy")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mn6re")
