@@ -15,13 +15,13 @@ func _ready() -> void:
 	hunt_timer.wait_time = hunt_duration
 	hunt_timer.timeout.connect(_on_hunt_timer_timeout)
 	add_child(hunt_timer)
-	
+
 	scatter_timer = Timer.new()
 	scatter_timer.one_shot = true
 	scatter_timer.wait_time = scatter_duration
 	scatter_timer.timeout.connect(_on_scatter_timer_timeout)
 	add_child(scatter_timer)
-	
+
 	scatter_timer.start()
 
 

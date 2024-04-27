@@ -18,6 +18,23 @@ background_mode = 1
 texture_filter = 1
 script = ExtResource("1_ec1je")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(224, 248)
+zoom = Vector2(2, 2)
+
+[node name="UI" type="CanvasLayer" parent="Camera2D"]
+
+[node name="DotsRemaining" type="Label" parent="Camera2D/UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_ql0uq")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eyrxn")
 
@@ -92,10 +109,6 @@ home_position = NodePath("../Home")
 tile_map = NodePath("../MazeTileMap")
 speed = 32.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(224, 248)
-zoom = Vector2(2, 2)
-
 [node name="Scatter1" type="Marker2D" parent="."]
 position = Vector2(8, 8)
 
@@ -117,18 +130,6 @@ position = Vector2(-24, 0)
 [node name="NextIntersectionMuncher" parent="." instance=ExtResource("4_42oab")]
 position = Vector2(-40, -16)
 color = Color(0.392157, 1, 0, 1)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="DotsRemaining" type="Label" parent="UI"]
-offset_left = 168.0
-offset_top = 200.0
-offset_right = 280.0
-offset_bottom = 264.0
-text = "Placeholder"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("10_ql0uq")
 
 [connection signal="mode_changed" from="." to="Hunter" method="change_mode"]
 [connection signal="mode_changed" from="." to="Ambusher" method="change_mode"]

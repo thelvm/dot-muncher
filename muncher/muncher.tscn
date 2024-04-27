@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://361axe6upcnf" path="res://muncher/Muncher_placeholder.png" id="1_mg5s2"]
 [ext_resource type="Script" path="res://scripts/tile_movement.gd" id="1_thj5s"]
-[ext_resource type="PackedScene" uid="uid://bqu14d7qakmer" path="res://muncher/player_input_manager.tscn" id="3_hledr"]
+[ext_resource type="Script" path="res://muncher/player_input_manager.gd" id="3_e0oyb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_30p6o"]
 animations = [{
@@ -25,12 +25,13 @@ script = ExtResource("1_thj5s")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_30p6o")
 
-[node name="PlayerInputManager" parent="." instance=ExtResource("3_hledr")]
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_8m6ok")
 
-[connection signal="requested_direction_changed" from="PlayerInputManager" to="." method="update_requested_direction"]
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource("3_e0oyb")
+
+[connection signal="requested_direction_changed" from="InputManager" to="." method="update_requested_direction"]
