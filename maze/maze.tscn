@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://tnib3k6ptbh1"]
+[gd_scene load_steps=13 format=3 uid="uid://tnib3k6ptbh1"]
 
 [ext_resource type="TileSet" uid="uid://0r73tac1owas" path="res://maze/tileset_placeholder.tres" id="1_8ulsm"]
 [ext_resource type="Script" path="res://maze/level_manager.gd" id="1_ec1je"]
 [ext_resource type="TileSet" uid="uid://ckgua88mvwg6x" path="res://maze/maze_tileset.tres" id="2_2pwfs"]
 [ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://muncher/muncher.tscn" id="2_sc86c"]
+[ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause_menu.tscn" id="3_uy6qd"]
 [ext_resource type="PackedScene" uid="uid://clpvfnyw5vd1s" path="res://debug_utils/debug_point.tscn" id="4_42oab"]
 [ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://enemy/enemy.tscn" id="4_uir3e"]
 [ext_resource type="Script" path="res://enemy/ambusher.gd" id="5_gwspy"]
@@ -25,15 +26,23 @@ zoom = Vector2(2, 2)
 [node name="UI" type="CanvasLayer" parent="Camera2D"]
 
 [node name="DotsRemaining" type="Label" parent="Camera2D/UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Placeholder"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("10_ql0uq")
+
+[node name="PauseMenu" parent="Camera2D/UI" instance=ExtResource("3_uy6qd")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eyrxn")
