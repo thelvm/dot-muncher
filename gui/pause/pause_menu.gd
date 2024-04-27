@@ -1,7 +1,7 @@
 extends Control
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	visible = GameManager.game_state == GameManager.GAME_STATE_PAUSED
 
 

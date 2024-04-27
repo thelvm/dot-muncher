@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://tnib3k6ptbh1"]
+[gd_scene load_steps=15 format=3 uid="uid://tnib3k6ptbh1"]
 
 [ext_resource type="TileSet" uid="uid://0r73tac1owas" path="res://maze/tileset_placeholder.tres" id="1_8ulsm"]
 [ext_resource type="Script" path="res://maze/level_manager.gd" id="1_ec1je"]
 [ext_resource type="TileSet" uid="uid://ckgua88mvwg6x" path="res://maze/maze_tileset.tres" id="2_2pwfs"]
 [ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://muncher/muncher.tscn" id="2_sc86c"]
-[ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause_menu.tscn" id="3_uy6qd"]
+[ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause/pause_menu.tscn" id="3_uy6qd"]
 [ext_resource type="PackedScene" uid="uid://clpvfnyw5vd1s" path="res://debug_utils/debug_point.tscn" id="4_42oab"]
 [ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://enemy/enemy.tscn" id="4_uir3e"]
+[ext_resource type="PackedScene" uid="uid://cfwancfu8ajok" path="res://gui/game_over/game_over_menu.tscn" id="4_yh2a8"]
 [ext_resource type="Script" path="res://enemy/ambusher.gd" id="5_gwspy"]
+[ext_resource type="PackedScene" uid="uid://l7tsf1leajc7" path="res://gui/main_menu/main_menu.tscn" id="5_v0653"]
 [ext_resource type="Script" path="res://enemy/strategist.gd" id="6_l7bjv"]
 [ext_resource type="Script" path="res://enemy/coward.gd" id="7_rlevi"]
 [ext_resource type="Script" path="res://maze/DotsRemainingUI.gd" id="10_ql0uq"]
@@ -43,6 +45,10 @@ vertical_alignment = 1
 script = ExtResource("10_ql0uq")
 
 [node name="PauseMenu" parent="Camera2D/UI" instance=ExtResource("3_uy6qd")]
+
+[node name="GameOverMenu" parent="Camera2D/UI" instance=ExtResource("4_yh2a8")]
+
+[node name="MainMenu" parent="Camera2D/UI" instance=ExtResource("5_v0653")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eyrxn")

@@ -46,13 +46,13 @@ func change_mode(new_mode: int) -> void:
 func _update_best_direction() -> void:
 	if not _reached_intersection:
 		return
-	
+
 	var available_directions: DirectionMask = DirectionMask.new()
 	available_directions.bitmask = _next_intersection_available_directions.bitmask
 	var current_direction_as_mask := DirectionMask.new()
 	current_direction_as_mask.from_vector2(-current_direction)
 	available_directions.remove_direction(current_direction_as_mask.bitmask)
-	
+
 	var min_distance_to_target: float = 100_000_000
 	var best_direction: Vector2
 	if available_directions.has_direction(DirectionMask.UP):
@@ -79,7 +79,7 @@ func _update_best_direction() -> void:
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.LEFT
-	
+
 	current_direction = best_direction
 
 func _update_hunt_target() -> void:

@@ -8,7 +8,7 @@ func _ready() -> void:
 	dots_in_level += 1
 
 
-func _on_player_collision(area: Area2D) -> void:
+func _on_player_collision(_area: Area2D) -> void:
 	dots_in_level -= 1
 	GameManager.score_points(point_value)
 	queue_free()
