@@ -18,11 +18,17 @@ texture = ExtResource("2_07fkc")
 region_enabled = true
 region_rect = Rect2(0, 240, 16, 16)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="OffensiveHitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OffensiveHitbox"]
+shape = SubResource("RectangleShape2D_uexsr")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_uexsr")
 
 [node name="TeleporterHitbox" type="Area2D" parent="."]
@@ -32,4 +38,5 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterHitbox"]
 shape = SubResource("RectangleShape2D_4faxo")
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="TeleporterHitbox" to="." method="_on_teleporter_entered"]

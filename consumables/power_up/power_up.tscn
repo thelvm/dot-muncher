@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://3tj6q6vx2ah8"]
+
+[ext_resource type="PackedScene" uid="uid://c2yqd6hbd0n2m" path="res://consumables/Consumable.tscn" id="1_ab4xd"]
+[ext_resource type="Script" path="res://consumables/power_up/power_up.gd" id="2_1q6je"]
+[ext_resource type="Texture2D" uid="uid://dy8eaawxui3tg" path="res://consumables/dot/dot.png" id="2_aexkw"]
+
+[node name="PowerUp" instance=ExtResource("1_ab4xd")]
+script = ExtResource("2_1q6je")
+point_value = 100
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(2, 2)
+texture = ExtResource("2_aexkw")

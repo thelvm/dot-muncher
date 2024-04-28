@@ -39,6 +39,7 @@ version_control/autoload_on_startup=true
 [file_customization]
 
 folder_colors={
+"res://consumables/": "orange",
 "res://debug_utils/": "gray",
 "res://enemy/": "red",
 "res://maze/": "pink",

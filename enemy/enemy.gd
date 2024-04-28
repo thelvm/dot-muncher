@@ -13,39 +13,67 @@ const MODE_GO_HOME = 3
 
 var _target: Vector2: set = _set_target
 var _current_mode: int = MODE_SCATTER
+var _speed_base: float
+var _speed_panic: float
+var _speed_go_home: float
+
+
+@onready var _offensive_hitbox: Area2D = $OffensiveHitbox
+@onready var _hitbox: Area2D = $Hitbox
 
 
 func _ready() -> void:
 	super._ready()
 	_target = scatter_position.global_position
+	_speed_base = speed
+	_speed_panic = speed / 3
+	_speed_go_home = speed * 2
 
 
 func _physics_process(delta: float) -> void:
 	_update_next_intersetion_coordinates()
 	_update_reached_intersection()
-	if _reached_intersection and _current_mode == MODE_HUNT:
+	if _reached_intersection and _current_mode == MODE_HUNT: # FIXME onyl switch when home reached
 		_update_hunt_target()
 	_update_best_direction()
 	_move(delta)
 
 
 func change_mode(new_mode: int) -> void:
-	turn_around()
-	_current_mode = new_mode
-	match _current_mode:
-		MODE_HUNT:
-			_update_hunt_target()
-		MODE_SCATTER:
-			_target = scatter_position.global_position
-		MODE_PANIC:
-			pass # TODO
-		MODE_GO_HOME:
-			_target = home_position.global_position
+	if _current_mode == new_mode:
+		return
 
+	turn_around()
+
+	if _current_mode == MODE_GO_HOME and new_mode != MODE_HUNT:
+		return
+
+	match new_mode:
+		MODE_HUNT, MODE_SCATTER:
+			speed = _speed_base
+			_offensive_hitbox.set_deferred("monitorable", true)
+			_hitbox.monitoring = false
+			if new_mode == MODE_HUNT:
+				_update_hunt_target()
+			else:
+				_target = scatter_position.global_position
+		MODE_PANIC:
+			speed = _speed_panic
+			_offensive_hitbox.set_deferred("monitorable", false) # FIXME not turning off?
+			_hitbox.monitoring = true
+		MODE_GO_HOME:
+			speed = _speed_go_home
+			_target = home_position.global_position
+			_offensive_hitbox.set_deferred("monitorable", false)
+			_hitbox.monitoring = false
+	_current_mode = new_mode
 
 func _update_best_direction() -> void:
 	if not _reached_intersection:
 		return
+
+	if _current_mode == MODE_PANIC:
+		_target = global_position + Vector2(randf_range(-5,5), randf_range(-5,5))
 
 	var available_directions: DirectionMask = DirectionMask.new()
 	available_directions.bitmask = _next_intersection_available_directions.bitmask
@@ -89,3 +117,7 @@ func _update_hunt_target() -> void:
 func _set_target(new_value: Vector2) -> void:
 	_target = new_value
 	hunt_target_updated.emit(_target)
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	change_mode(MODE_GO_HOME)

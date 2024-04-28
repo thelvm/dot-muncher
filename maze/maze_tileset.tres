@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://ckgua88mvwg6x"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://ckgua88mvwg6x"]
 
 [ext_resource type="Texture2D" uid="uid://1p43q87ex3gb" path="res://maze/maze_tileset_atlas.png" id="2_u2ddt"]
-[ext_resource type="PackedScene" uid="uid://crmj5710cs8cw" path="res://consumables/dot/dot.tscn" id="2_uwjma"]
+[ext_resource type="PackedScene" uid="uid://dk4nj5wplw70o" path="res://consumables/dot/dot.tscn" id="2_uwjma"]
+[ext_resource type="PackedScene" uid="uid://3tj6q6vx2ah8" path="res://consumables/power_up/power_up.tscn" id="3_inxfc"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_rhlug"]
 tile_data = PackedInt32Array(0, 131073, 131072, 65536, 65537, 0, 131072, 65537, 0, 1, 65537, 131072, 65537, 131073, 262145, 131073, 65537, 1, 2, 65537, 131072, 65538, 65537, 131073, 131074, 1, 262145)
@@ -264,6 +265,7 @@ texture = ExtResource("2_u2ddt")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_coak6"]
 scenes/1/scene = ExtResource("2_uwjma")
+scenes/2/scene = ExtResource("3_inxfc")
 
 [resource]
 terrain_set_0/mode = 0
