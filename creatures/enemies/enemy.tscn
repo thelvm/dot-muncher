@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2h2rjwefxke8"]
+
+[ext_resource type="Script" path="res://creatures/enemies/enemy.gd" id="1_6bbnx"]
+[ext_resource type="Texture2D" uid="uid://c8glmfeimqamc" path="res://creatures/enemies/hunter/hunter_body.png" id="2_y643b"]
+[ext_resource type="Script" path="res://creatures/enemies/creature_visuals.gd" id="3_0efku"]
+[ext_resource type="Texture2D" uid="uid://d07rgumygh1ta" path="res://creatures/creature_sclera.png" id="4_yg6b3"]
+[ext_resource type="Texture2D" uid="uid://u0sqddsmm6la" path="res://creatures/creature_pupil.png" id="5_kw65o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uexsr"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4faxo"]
+size = Vector2(8, 8)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_6bbnx")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_y643b")
+region_rect = Rect2(0, 240, 16, 16)
+script = ExtResource("3_0efku")
+
+[node name="Sclera" type="Sprite2D" parent="Body"]
+texture = ExtResource("4_yg6b3")
+
+[node name="Pupil" type="Sprite2D" parent="Body/Sclera"]
+texture = ExtResource("5_kw65o")
+
+[node name="OffensiveHitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OffensiveHitbox"]
+shape = SubResource("RectangleShape2D_uexsr")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_uexsr")
+
+[node name="TeleporterHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleporterHitbox"]
+shape = SubResource("RectangleShape2D_4faxo")
+
+[connection signal="current_direction_changed" from="." to="Body" method="_on_current_direction_changed"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="TeleporterHitbox" to="." method="_on_teleporter_entered"]

@@ -1,17 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://tnib3k6ptbh1"]
+[gd_scene load_steps=18 format=3 uid="uid://tnib3k6ptbh1"]
 
 [ext_resource type="Script" path="res://maze/level_manager.gd" id="1_ec1je"]
 [ext_resource type="TileSet" uid="uid://ckgua88mvwg6x" path="res://maze/maze_tileset.tres" id="2_2pwfs"]
-[ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://muncher/muncher.tscn" id="2_sc86c"]
+[ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://creatures/muncher/muncher.tscn" id="2_sc86c"]
 [ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause/pause_menu.tscn" id="3_uy6qd"]
-[ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://enemy/enemy.tscn" id="4_uir3e"]
+[ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://creatures/enemies/enemy.tscn" id="4_uir3e"]
 [ext_resource type="PackedScene" uid="uid://cfwancfu8ajok" path="res://gui/game_over/game_over_menu.tscn" id="4_yh2a8"]
-[ext_resource type="Script" path="res://enemy/ambusher.gd" id="5_gwspy"]
+[ext_resource type="Script" path="res://creatures/enemies/ambusher/ambusher.gd" id="5_gwspy"]
 [ext_resource type="PackedScene" uid="uid://l7tsf1leajc7" path="res://gui/main_menu/main_menu.tscn" id="5_v0653"]
-[ext_resource type="Script" path="res://enemy/strategist.gd" id="6_l7bjv"]
-[ext_resource type="Script" path="res://enemy/coward.gd" id="7_rlevi"]
+[ext_resource type="Script" path="res://creatures/enemies/strategist/strategist.gd" id="6_l7bjv"]
+[ext_resource type="Script" path="res://creatures/enemies/coward/coward.gd" id="7_rlevi"]
+[ext_resource type="Texture2D" uid="uid://dv2f3msbbqwfl" path="res://creatures/enemies/ambusher/ambusher_body.png" id="9_pcx6h"]
 [ext_resource type="Script" path="res://maze/DotsRemainingUI.gd" id="10_ql0uq"]
+[ext_resource type="Texture2D" uid="uid://dgt1oifsr65g5" path="res://creatures/enemies/strategist/strategist_body.png" id="11_4ijkr"]
 [ext_resource type="PackedScene" uid="uid://bn47r17ujlo40" path="res://teleporter/teleporter.tscn" id="13_021iy"]
+[ext_resource type="Texture2D" uid="uid://bg2lx2ywbakue" path="res://creatures/enemies/coward/coward.png" id="13_lochu"]
 [ext_resource type="PackedScene" uid="uid://3tj6q6vx2ah8" path="res://consumables/power_up/power_up.tscn" id="13_vguek"]
 
 [sub_resource type="Environment" id="Environment_eyrxn"]
@@ -78,7 +81,10 @@ home_entrance_position = NodePath("../HomeEntrance")
 tile_map = NodePath("../MazeTileMap")
 speed = 32.0
 
-[node name="Stretegist" parent="." node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
+[node name="Body" parent="Ambusher" index="0"]
+texture = ExtResource("9_pcx6h")
+
+[node name="Strategist" parent="." node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
 position = Vector2(240, 184)
 script = ExtResource("6_l7bjv")
 partner = NodePath("../Hunter")
@@ -88,6 +94,9 @@ home_position = NodePath("../Home")
 home_entrance_position = NodePath("../HomeEntrance")
 tile_map = NodePath("../MazeTileMap")
 speed = 32.0
+
+[node name="Body" parent="Strategist" index="0"]
+texture = ExtResource("11_4ijkr")
 
 [node name="Coward" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
 position = Vector2(272, 184)
@@ -99,6 +108,9 @@ home_position = NodePath("../Home")
 home_entrance_position = NodePath("../HomeEntrance")
 tile_map = NodePath("../MazeTileMap")
 speed = 32.0
+
+[node name="Body" parent="Coward" index="0"]
+texture = ExtResource("13_lochu")
 
 [node name="Scatter1" type="Marker2D" parent="."]
 position = Vector2(8, 8)
@@ -156,9 +168,13 @@ position = Vector2(24, 376)
 
 [connection signal="mode_changed" from="." to="Hunter" method="change_mode"]
 [connection signal="mode_changed" from="." to="Ambusher" method="change_mode"]
-[connection signal="mode_changed" from="." to="Stretegist" method="change_mode"]
+[connection signal="mode_changed" from="." to="Strategist" method="change_mode"]
 [connection signal="mode_changed" from="." to="Coward" method="change_mode"]
 [connection signal="consumed" from="PowerUp" to="." method="start_panic"]
 [connection signal="consumed" from="PowerUp2" to="." method="start_panic"]
 [connection signal="consumed" from="PowerUp3" to="." method="start_panic"]
 [connection signal="consumed" from="PowerUp4" to="." method="start_panic"]
+
+[editable path="Ambusher"]
+[editable path="Strategist"]
+[editable path="Coward"]

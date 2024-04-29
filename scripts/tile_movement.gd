@@ -1,5 +1,5 @@
 class_name TileMovement extends Node2D
-
+signal current_direction_changed(new_direction: Vector2)
 signal debug_next_intersection_coords_updated(position: Vector2)
 signal debug_available_directions(directions: int)
 signal debug_reached_intersection(is_past_center: bool)
@@ -10,7 +10,7 @@ signal debug_reached_intersection(is_past_center: bool)
 var _tile_size: int
 var _offset: int
 
-var current_direction: Vector2 = Vector2.RIGHT
+var current_direction: Vector2 = Vector2.RIGHT: set = _set_current_direction
 var _requested_direction: Vector2
 
 var _next_intersection_coords: Vector2: set = _set_next_intersection_coords
@@ -135,6 +135,11 @@ func _update_reached_intersection() -> void:
 func _set_next_intersection_coords(new_value: Vector2) -> void:
 	_next_intersection_coords = new_value
 	debug_next_intersection_coords_updated.emit(_next_intersection_coords)
+
+
+func _set_current_direction(new_direction: Vector2) -> void:
+	current_direction = new_direction
+	current_direction_changed.emit(current_direction)
 
 
 func _on_teleporter_entered(area: Area2D) -> void:

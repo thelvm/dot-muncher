@@ -40,10 +40,14 @@ version_control/autoload_on_startup=true
 
 folder_colors={
 "res://consumables/": "orange",
+"res://creatures/": "yellow",
+"res://creatures/enemies/": "red",
+"res://creatures/enemies/ambusher/": "blue",
+"res://creatures/enemies/coward/": "orange",
+"res://creatures/enemies/strategist/": "pink",
+"res://creatures/muncher/": "green",
 "res://debug_utils/": "gray",
-"res://enemy/": "red",
 "res://maze/": "pink",
-"res://muncher/": "green",
 "res://scripts/": "gray"
 }
 
