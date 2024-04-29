@@ -14,19 +14,19 @@ func _init(source_vec2: Vector2 = Vector2.ZERO) -> void:
 
 
 static func new_from_vector2(source_vector2: Vector2) -> DirectionMask:
-	var new_direction_mask = DirectionMask.new()
+	var new_direction_mask := DirectionMask.new()
 	new_direction_mask.from_vector2(source_vector2)
 	return new_direction_mask
 
 
 static func new_from_direction_mask(source_direction_mask: DirectionMask) -> DirectionMask:
-	var new_direction_mask = DirectionMask.new()
+	var new_direction_mask := DirectionMask.new()
 	new_direction_mask.bitmask =  source_direction_mask.bitmask
 	return new_direction_mask
 
 
 static func new_from_bitmask(source_direction_mask: DirectionMask) -> DirectionMask:
-	var new_direction_mask = DirectionMask.new()
+	var new_direction_mask := DirectionMask.new()
 	new_direction_mask.bitmask =  source_direction_mask.bitmask
 	return new_direction_mask
 
