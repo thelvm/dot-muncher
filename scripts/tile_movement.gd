@@ -88,7 +88,6 @@ func _update_next_intersetion_coordinates() -> void:
 	if _is_next_intersection_coordinates_up_to_date:
 		return
 
-	# TODO fix next intersection not behaving with direction change on same tile as intersection
 	# Get coords of the tile at the current player's position
 	var current_tile_map_coords: Vector2i
 	current_tile_map_coords = tile_map.local_to_map(tile_map.to_local(self.global_position))
