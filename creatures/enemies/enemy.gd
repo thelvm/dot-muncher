@@ -12,6 +12,9 @@ const MODE_GO_HOME = 3
 @export var home_position: Node2D
 @export var home_entrance_position: Node2D
 
+var states: Dictionary = {}
+var _current_state: EnemyState
+
 var _target: Vector2: set = _set_target
 var _current_mode: int = MODE_SCATTER
 var _speed_base: float
@@ -31,16 +34,20 @@ func _ready() -> void:
 	_speed_panic = speed / 3
 	_speed_go_home = speed * 2
 
+	for child in get_children():
+		if child is EnemyState:
+			states[child.name.to_lower()] = child
+
 
 func _physics_process(delta: float) -> void:
 	if _current_mode == MODE_GO_HOME:
 		_home_entrance_reached = ((home_entrance_position.global_position - global_position).dot(current_direction) <= 0) and global_position.distance_to(home_entrance_position.global_position) < 16
 		if _home_entrance_reached:
 			change_mode(MODE_HUNT)
-	
+
 	if _current_mode == MODE_HUNT and _reached_intersection:
 		_update_hunt_target()
-	
+
 	_update_next_intersetion_coordinates()
 	_update_reached_intersection()
 	_update_best_direction()
@@ -48,8 +55,8 @@ func _physics_process(delta: float) -> void:
 
 
 func change_mode(new_mode: int) -> void:
-	# TODO switch to dictionary based 
-	
+	# TODO switch to dictionary based
+
 	if _current_mode == new_mode:
 		return
 
@@ -81,7 +88,7 @@ func change_mode(new_mode: int) -> void:
 func _update_best_direction() -> void:
 	if not _reached_intersection:
 		return
-	
+
 	if _current_mode == MODE_PANIC:
 		_target = global_position + Vector2(randf_range(-5,5), randf_range(-5,5))
 
@@ -91,28 +98,28 @@ func _update_best_direction() -> void:
 
 	var min_distance_to_target: float = 100_000_000
 	var best_direction: Vector2
-	
+
 	if available_directions.has_direction(DirectionMask.UP):
 		var tile_position: Vector2 = global_position + (Vector2.UP * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.UP
-			
+
 	if available_directions.has_direction(DirectionMask.RIGHT):
 		var tile_position: Vector2 = global_position + (Vector2.RIGHT * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.RIGHT
-			
+
 	if available_directions.has_direction(DirectionMask.DOWN):
 		var tile_position: Vector2 = global_position + (Vector2.DOWN * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)
 		if distance_to_target < min_distance_to_target:
 			min_distance_to_target = distance_to_target
 			best_direction = Vector2.DOWN
-			
+
 	if available_directions.has_direction(DirectionMask.LEFT):
 		var tile_position: Vector2 = global_position + (Vector2.LEFT * _tile_size)
 		var distance_to_target: float = tile_position.distance_to(_target)

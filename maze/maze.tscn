@@ -56,13 +56,13 @@ layer_0/tile_data = PackedInt32Array(327683, 65537, 131073, 327684, 65537, 13107
 layer_1/name = "Consumables"
 layer_1/tile_data = PackedInt32Array(1900545, 2, 65536, 1900546, 2, 65536, 1900547, 2, 65536, 1900548, 2, 65536, 1900549, 2, 65536, 1900550, 2, 65536, 1900551, 2, 65536, 1900552, 2, 65536, 1900553, 2, 65536, 1900554, 2, 65536, 1900555, 2, 65536, 1900556, 2, 65536, 1900557, 2, 65536, 1900558, 2, 65536, 1900559, 2, 65536, 1900560, 2, 65536, 1900561, 2, 65536, 1900562, 2, 65536, 1900563, 2, 65536, 1900564, 2, 65536, 1900565, 2, 65536, 1900566, 2, 65536, 1900567, 2, 65536, 1900568, 2, 65536, 1900569, 2, 65536, 1900570, 2, 65536, 1835034, 2, 65536, 1769498, 2, 65536, 1703962, 2, 65536, 1703961, 2, 65536, 1703960, 2, 65536, 1703959, 2, 65536, 1703958, 2, 65536, 1703957, 2, 65536, 1638421, 2, 65536, 1572885, 2, 65536, 1507349, 2, 65536, 1572882, 2, 65536, 1638418, 2, 65536, 1703954, 2, 65536, 1703953, 2, 65536, 1703952, 2, 65536, 1703951, 2, 65536, 1769487, 2, 65536, 1835023, 2, 65536, 1835020, 2, 65536, 1769484, 2, 65536, 1703948, 2, 65536, 1703947, 2, 65536, 1703946, 2, 65536, 1703945, 2, 65536, 1638409, 2, 65536, 1572873, 2, 65536, 1507334, 2, 65536, 1572870, 2, 65536, 1638406, 2, 65536, 1703942, 2, 65536, 1703941, 2, 65536, 1703940, 2, 65536, 1703939, 2, 65536, 1703938, 2, 65536, 1703937, 2, 65536, 1769473, 2, 65536, 1835009, 2, 65536, 1638403, 2, 65536, 1572867, 2, 65536, 1507331, 2, 65536, 1507330, 2, 65536, 1441793, 2, 65536, 1376257, 2, 65536, 1310721, 2, 65536, 1310722, 2, 65536, 1310723, 2, 65536, 1310724, 2, 65536, 1310725, 2, 65536, 1310726, 2, 65536, 1376262, 2, 65536, 1441798, 2, 65536, 1310727, 2, 65536, 1310728, 2, 65536, 1310729, 2, 65536, 1310730, 2, 65536, 1310731, 2, 65536, 1310732, 2, 65536, 1376268, 2, 65536, 1441804, 2, 65536, 1441807, 2, 65536, 1376271, 2, 65536, 1310735, 2, 65536, 1310736, 2, 65536, 1310737, 2, 65536, 1310738, 2, 65536, 1310739, 2, 65536, 1310740, 2, 65536, 1310741, 2, 65536, 1310742, 2, 65536, 1310743, 2, 65536, 1310744, 2, 65536, 1310745, 2, 65536, 1310746, 2, 65536, 1376282, 2, 65536, 1441818, 2, 65536, 1507353, 2, 65536, 1507352, 2, 65536, 1572888, 2, 65536, 1638424, 2, 65536, 1441813, 2, 65536, 1376277, 2, 65536, 1245205, 2, 65536, 1179669, 2, 65536, 1048597, 2, 65536, 1114133, 2, 65536, 917510, 2, 65536, 983046, 2, 65536, 1048582, 2, 65536, 1114118, 2, 65536, 1179654, 2, 65536, 1245190, 2, 65536, 983061, 2, 65536, 917525, 2, 65536, 851989, 2, 65536, 786453, 2, 65536, 720917, 2, 65536, 655381, 2, 65536, 589845, 2, 65536, 524309, 2, 65536, 458773, 2, 65536, 393237, 2, 65536, 327701, 2, 65536, 327700, 2, 65536, 327699, 2, 65536, 327698, 2, 65536, 327697, 2, 65536, 327696, 2, 65536, 327695, 2, 65536, 327694, 2, 65536, 327693, 2, 65536, 327692, 2, 65536, 327691, 2, 65536, 327690, 2, 65536, 327689, 2, 65536, 327688, 2, 65536, 327687, 2, 65536, 327686, 2, 65536, 393222, 2, 65536, 458758, 2, 65536, 524294, 2, 65536, 589830, 2, 65536, 655366, 2, 65536, 720902, 2, 65536, 786438, 2, 65536, 851974, 2, 65536, 327685, 2, 65536, 327684, 2, 65536, 327683, 2, 65536, 327682, 2, 65536, 327681, 2, 65536, 393217, 2, 65536, 458753, 2, 65536, 524289, 2, 65536, 524290, 2, 65536, 524291, 2, 65536, 524292, 2, 65536, 524293, 2, 65536, 262145, 2, 65536, 131073, 2, 65536, 65537, 2, 65536, 65538, 2, 65536, 65539, 2, 65536, 65540, 2, 65536, 65541, 2, 65536, 65542, 2, 65536, 131078, 2, 65536, 196614, 2, 65536, 262150, 2, 65536, 65543, 2, 65536, 65544, 2, 65536, 65545, 2, 65536, 65546, 2, 65536, 65547, 2, 65536, 65548, 2, 65536, 131084, 2, 65536, 196620, 2, 65536, 262156, 2, 65536, 262159, 2, 65536, 196623, 2, 65536, 131087, 2, 65536, 65551, 2, 65536, 65552, 2, 65536, 65553, 2, 65536, 65554, 2, 65536, 65555, 2, 65536, 65556, 2, 65536, 65557, 2, 65536, 65558, 2, 65536, 65559, 2, 65536, 65560, 2, 65536, 65561, 2, 65536, 65562, 2, 65536, 131098, 2, 65536, 262170, 2, 65536, 327706, 2, 65536, 393242, 2, 65536, 458778, 2, 65536, 524314, 2, 65536, 524313, 2, 65536, 524312, 2, 65536, 524311, 2, 65536, 524310, 2, 65536, 327702, 2, 65536, 327703, 2, 65536, 327704, 2, 65536, 327705, 2, 65536, 262165, 2, 65536, 196629, 2, 65536, 131093, 2, 65536)
 
-[node name="Muncher" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_sc86c")]
+[node name="Muncher" parent="." node_paths=PackedStringArray("tile_map") groups=["mucher"] instance=ExtResource("2_sc86c")]
 z_index = 1
 position = Vector2(224, 376)
 tile_map = NodePath("../MazeTileMap")
 speed = 32.0
 
-[node name="Hunter" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
+[node name="Hunter" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_uir3e")]
 position = Vector2(176, 184)
 muncher = NodePath("../Muncher")
 scatter_position = NodePath("../Scatter1")
@@ -71,7 +71,7 @@ home_entrance_position = NodePath("../HomeEntrance")
 tile_map = NodePath("../MazeTileMap")
 speed = 32.0
 
-[node name="Ambusher" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
+[node name="Ambusher" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_uir3e")]
 position = Vector2(208, 184)
 script = ExtResource("5_gwspy")
 muncher = NodePath("../Muncher")
@@ -84,7 +84,7 @@ speed = 32.0
 [node name="Body" parent="Ambusher" index="0"]
 texture = ExtResource("9_pcx6h")
 
-[node name="Strategist" parent="." node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
+[node name="Strategist" parent="." node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_uir3e")]
 position = Vector2(240, 184)
 script = ExtResource("6_l7bjv")
 partner = NodePath("../Hunter")
@@ -98,7 +98,7 @@ speed = 32.0
 [node name="Body" parent="Strategist" index="0"]
 texture = ExtResource("11_4ijkr")
 
-[node name="Coward" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") instance=ExtResource("4_uir3e")]
+[node name="Coward" parent="." node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_uir3e")]
 position = Vector2(272, 184)
 script = ExtResource("7_rlevi")
 cower_distance = 4
@@ -112,22 +112,22 @@ speed = 32.0
 [node name="Body" parent="Coward" index="0"]
 texture = ExtResource("13_lochu")
 
-[node name="Scatter1" type="Marker2D" parent="."]
+[node name="Scatter1" type="Marker2D" parent="." groups=["scatter_positions"]]
 position = Vector2(8, 8)
 
-[node name="Scatter2" type="Marker2D" parent="."]
+[node name="Scatter2" type="Marker2D" parent="." groups=["scatter_positions"]]
 position = Vector2(440, 8)
 
-[node name="Scatter3" type="Marker2D" parent="."]
+[node name="Scatter3" type="Marker2D" parent="." groups=["scatter_positions"]]
 position = Vector2(-8, 488)
 
-[node name="Scatter4" type="Marker2D" parent="."]
+[node name="Scatter4" type="Marker2D" parent="." groups=["scatter_positions"]]
 position = Vector2(456, 488)
 
-[node name="Home" type="Marker2D" parent="."]
+[node name="Home" type="Marker2D" parent="." groups=["home_positions"]]
 position = Vector2(224, 232)
 
-[node name="HomeEntrance" type="Marker2D" parent="."]
+[node name="HomeEntrance" type="Marker2D" parent="." groups=["home_positions"]]
 position = Vector2(224, 184)
 
 [node name="TeleporterLeft" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("13_021iy")]
