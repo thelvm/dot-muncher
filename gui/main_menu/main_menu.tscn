@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://l7tsf1leajc7"]
+[gd_scene load_steps=5 format=3 uid="uid://l7tsf1leajc7"]
 
 [ext_resource type="Theme" uid="uid://cbwv5lf36i55d" path="res://gui/gui_theme.tres" id="1_nx3ei"]
 [ext_resource type="Script" path="res://gui/main_menu/main_menu.gd" id="1_ydc2o"]
+[ext_resource type="Shader" path="res://gui/main_menu/vhs.gdshader" id="3_6efqn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mntf5"]
+shader = ExtResource("3_6efqn")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -30,10 +55,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -68,9 +93,16 @@ text = "Quit"
 
 [node name="MadeByLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Made by TheLVM"
+
+[node name="OverlayShader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mntf5")
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 960.0
+mouse_filter = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

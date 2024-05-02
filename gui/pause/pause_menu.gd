@@ -7,8 +7,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_resume_button_pressed() -> void:
-	GameManager.change_game_state(GameManager.GAME_STATE_PLAYING)
+	GameManager.unpause()
 
 
 func _on_quit_button_pressed() -> void:
 	GameManager.quit()
+
+
+func _on_main_menu_button_pressed() -> void:
+	GameManager.return_to_main_menu()

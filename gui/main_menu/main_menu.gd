@@ -1,12 +1,8 @@
 extends Control
 
 
-func _process(_delta: float) -> void:
-	visible = GameManager.game_state == GameManager.GAME_STATE_MAIN_MENU
-
-
 func _on_play_button_pressed() -> void:
-	GameManager.change_game_state(GameManager.GAME_STATE_PLAYING)
+	GameManager.start_playing()
 
 
 func _on_quit_button_pressed() -> void:

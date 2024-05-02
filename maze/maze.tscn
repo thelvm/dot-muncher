@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tnib3k6ptbh1"]
+[gd_scene load_steps=18 format=3 uid="uid://tnib3k6ptbh1"]
 
 [ext_resource type="Script" path="res://maze/level_manager.gd" id="1_ec1je"]
 [ext_resource type="TileSet" uid="uid://ckgua88mvwg6x" path="res://maze/maze_tileset.tres" id="2_2pwfs"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://creatures/enemies/enemy.tscn" id="4_uir3e"]
 [ext_resource type="PackedScene" uid="uid://cfwancfu8ajok" path="res://gui/game_over/game_over_menu.tscn" id="4_yh2a8"]
 [ext_resource type="Script" path="res://creatures/enemies/ambusher/ambusher.gd" id="5_gwspy"]
-[ext_resource type="PackedScene" uid="uid://l7tsf1leajc7" path="res://gui/main_menu/main_menu.tscn" id="5_v0653"]
 [ext_resource type="Script" path="res://creatures/enemies/strategist/strategist.gd" id="6_l7bjv"]
 [ext_resource type="Script" path="res://creatures/enemies/coward/coward.gd" id="7_rlevi"]
 [ext_resource type="Texture2D" uid="uid://dv2f3msbbqwfl" path="res://creatures/enemies/ambusher/ambusher_body.png" id="9_pcx6h"]
@@ -34,8 +33,6 @@ zoom = Vector2(2, 2)
 [node name="PauseMenu" parent="Camera2D/UI" instance=ExtResource("3_uy6qd")]
 
 [node name="GameOverMenu" parent="Camera2D/UI" instance=ExtResource("4_yh2a8")]
-
-[node name="MainMenu" parent="Camera2D/UI" instance=ExtResource("5_v0653")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eyrxn")
