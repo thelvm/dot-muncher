@@ -1,4 +1,50 @@
-[gd_resource type="Theme" format=3 uid="uid://cbwv5lf36i55d"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cbwv5lf36i55d"]
+
+[ext_resource type="FontFile" uid="uid://byidmwvt8niqt" path="res://RubikMonoOne-Regular.ttf" id="1_jreea"]
+[ext_resource type="Texture2D" uid="uid://mfbol6ahaxhv" path="res://gui/button_outline.png" id="2_w5jc0"]
+[ext_resource type="Texture2D" uid="uid://cm4q1pyenlbi" path="res://gui/button_outline_hover.png" id="2_x0vmj"]
+[ext_resource type="Texture2D" uid="uid://bkyjuhph46tqn" path="res://gui/button_outline_pressed.png" id="4_2qf37"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3adf2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e2rbw"]
+texture = ExtResource("2_x0vmj")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n80at"]
+texture = ExtResource("2_w5jc0")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0nss"]
+texture = ExtResource("4_2qf37")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [resource]
 default_font_size = 32
+Button/colors/font_color = Color(0.956863, 0.945098, 0.870588, 1)
+Button/colors/font_focus_color = Color(0.956863, 0.945098, 0.870588, 1)
+Button/colors/font_hover_color = Color(0.956863, 0.945098, 0.870588, 1)
+Button/colors/font_hover_pressed_color = Color(0.956863, 0.945098, 0.870588, 1)
+Button/colors/font_pressed_color = Color(0.956863, 0.945098, 0.870588, 1)
+Button/fonts/font = ExtResource("1_jreea")
+Button/styles/focus = SubResource("StyleBoxEmpty_3adf2")
+Button/styles/hover = SubResource("StyleBoxTexture_e2rbw")
+Button/styles/normal = SubResource("StyleBoxTexture_n80at")
+Button/styles/pressed = SubResource("StyleBoxTexture_s0nss")
+Label/colors/font_color = Color(0.956863, 0.945098, 0.870588, 1)
+Label/fonts/font = ExtResource("1_jreea")

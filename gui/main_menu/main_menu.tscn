@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0279432, 0.113281, 0.0432964, 1)
+color = Color(0.0196078, 0.0352941, 0.0784314, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -47,6 +47,7 @@ theme_override_constants/margin_bottom = 64
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
 text = "Dot Muncher"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -72,3 +73,4 @@ size_flags_vertical = 8
 text = "Made by TheLVM"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

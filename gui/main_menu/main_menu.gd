@@ -7,3 +7,7 @@ func _process(_delta: float) -> void:
 
 func _on_play_button_pressed() -> void:
 	GameManager.change_game_state(GameManager.GAME_STATE_PLAYING)
+
+
+func _on_quit_button_pressed() -> void:
+	GameManager.quit()
