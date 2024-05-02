@@ -166,10 +166,10 @@ position = Vector2(424, 376)
 [node name="PowerUp4" parent="." instance=ExtResource("13_vguek")]
 position = Vector2(24, 376)
 
-[connection signal="mode_changed" from="." to="Hunter" method="change_mode"]
-[connection signal="mode_changed" from="." to="Ambusher" method="change_mode"]
-[connection signal="mode_changed" from="." to="Strategist" method="change_mode"]
-[connection signal="mode_changed" from="." to="Coward" method="change_mode"]
+[connection signal="state_changed" from="." to="Hunter" method="change_state"]
+[connection signal="state_changed" from="." to="Ambusher" method="change_state"]
+[connection signal="state_changed" from="." to="Strategist" method="change_state"]
+[connection signal="state_changed" from="." to="Coward" method="change_state"]
 [connection signal="consumed" from="PowerUp" to="." method="start_panic"]
 [connection signal="consumed" from="PowerUp2" to="." method="start_panic"]
 [connection signal="consumed" from="PowerUp3" to="." method="start_panic"]

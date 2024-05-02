@@ -21,16 +21,16 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var direction_to: Vector2 
-	if base_enemy._current_mode == EnemyController.MODE_PANIC or base_enemy._current_mode == EnemyController.MODE_GO_HOME:
+	if base_enemy._current_state == EnemyController.STATE_PANIC or base_enemy._current_state == EnemyController.STATE_GO_HOME:
 		direction_to = base_enemy.muncher.global_position.direction_to(base_enemy.global_position)
 	else:
 		direction_to = base_enemy.global_position.direction_to(base_enemy.muncher.global_position)
 	pupil_sprite.position = round(_pupil_base_position + (direction_to * _pupil_offset))
 	
-	if base_enemy._current_mode == EnemyController.MODE_PANIC:
+	if base_enemy._current_state == EnemyController.STATE_PANIC:
 		self_modulate = Color.WHITE
 		texture = _body_texture_vulnerable
-	elif base_enemy._current_mode == EnemyController.MODE_GO_HOME:
+	elif base_enemy._current_state == EnemyController.STATE_GO_HOME:
 		self_modulate = Color.TRANSPARENT
 	else:
 		self_modulate = Color.WHITE

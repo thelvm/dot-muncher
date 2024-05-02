@@ -1,6 +1,6 @@
 extends Node
 
-signal mode_changed(new_mode: int)
+signal state_changed(new_state: int)
 
 @export_range(0, 120) var hunt_duration: float = 20
 @export_range(0, 120) var scatter_duration: float = 7
@@ -35,18 +35,18 @@ func _ready() -> void:
 
 func start_panic() -> void:
 	panic_timer.start()
-	mode_changed.emit(EnemyController.MODE_PANIC)
+	state_changed.emit(EnemyController.STATE_PANIC)
 
 
 func _on_hunt_timer_timeout() -> void:
 	scatter_timer.start()
-	mode_changed.emit(EnemyController.MODE_SCATTER)
+	state_changed.emit(EnemyController.STATE_SCATTER)
 
 
 func _on_scatter_timer_timeout() -> void:
 	hunt_timer.start()
-	mode_changed.emit(EnemyController.MODE_HUNT)
+	state_changed.emit(EnemyController.STATE_HUNT)
 
 func _on_panic_timer_timeout() -> void:
 	hunt_timer.start()
-	mode_changed.emit(EnemyController.MODE_HUNT)
+	state_changed.emit(EnemyController.STATE_HUNT)
