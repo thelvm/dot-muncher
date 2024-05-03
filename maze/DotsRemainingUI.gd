@@ -13,4 +13,4 @@ func _process(_delta: float) -> void:
 		score_display_tween = create_tween()
 		score_display_tween.tween_property(self, "score_display", GameManager.score, 0.1)
 	
-	text = "Score: " + str(score_display)
+	text = str(score_display)

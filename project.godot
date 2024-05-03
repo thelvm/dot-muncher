@@ -27,8 +27,7 @@ gdscript/warnings/untyped_declaration=1
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=960
+window/size/viewport_width=448
 window/size/resizable=false
 
 [editor]
@@ -50,6 +49,10 @@ folder_colors={
 "res://maze/": "pink",
 "res://scripts/": "gray"
 }
+
+[gui]
+
+theme/custom="res://gui/gui_theme.tres"
 
 [input]
 
