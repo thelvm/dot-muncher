@@ -1,16 +1,35 @@
 extends Control
 
-@onready var score_tally_label: Label = %ScoreTally
+var display_score: int = 0: set = _set_display_score
+
+@onready var score_value_label: Label = %ScoreValueLabel
 
 
 func _process(_delta: float) -> void:
 	visible = GameManager.game_state == GameManager.GAME_STATE_GAME_OVER
 
 
+func animate_score() -> void:
+	create_tween().tween_property(self, "display_score", GameManager.score, 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
+
 func _on_visibility_changed() -> void:
-	if visible and score_tally_label:
-		score_tally_label.text = "Score: " + str(GameManager.score)
+	if visible and score_value_label:
+		$AnimationPlayer.play("GameOver")
+
+
+func _on_retry_button_pressed() -> void:
+	GameManager.start_playing()
+
+
+func _on_main_menu_button_pressed() -> void:
+	GameManager.return_to_main_menu()
 
 
 func _on_quit_button_pressed() -> void:
 	GameManager.quit()
+
+
+func _set_display_score(new_value: int) -> void:
+	score_value_label.text = str(new_value)
+	display_score = new_value

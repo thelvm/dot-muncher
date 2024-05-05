@@ -76,9 +76,9 @@ func _move(delta: float) -> void:
 		Vector2.UP, Vector2.DOWN:
 			position.x = Util.snap(position.x, _tile_size, 0, _offset)
 		Vector2.LEFT, Vector2.RIGHT:
-			position.y = Util.snap(position.y, _tile_size, 0, _offset)
+			position.y = Util.snap(position.y, _tile_size, 0, 0)
 		_:
-			position.y = Util.snap(position.y, _tile_size, 0, _offset)
+			position.y = Util.snap(position.y, _tile_size, 0, 0)
 			position.x = Util.snap(position.x, _tile_size, 0, _offset)
 
 

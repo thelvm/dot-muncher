@@ -13,6 +13,7 @@ var maze_scene_path := "res://maze/maze.tscn"
 
 var current_scene: Node = null
 var currently_loading_scene := ""
+var game_state_on_loaded: int
 
 
 func _enter_tree() -> void:
@@ -44,8 +45,8 @@ func score_points(points: int) -> int:
 
 
 func start_playing() -> void:
-	start_loading_screen(maze_scene_path)
-	game_state = GAME_STATE_PLAYING
+	start_loading_scene(maze_scene_path)
+	game_state_on_loaded = GAME_STATE_PLAYING
 	get_tree().paused = false
 
 
@@ -59,16 +60,21 @@ func unpause() -> void:
 	get_tree().paused = false
 
 
+func game_over() -> void:
+	game_state = GAME_STATE_GAME_OVER
+	get_tree().paused = true
+
+
 func return_to_main_menu() -> void:
-	game_state = GAME_STATE_MAIN_MENU
-	start_loading_screen(main_menu_scene_path)
+	game_state_on_loaded = GAME_STATE_MAIN_MENU
+	start_loading_scene(main_menu_scene_path)
 
 
 func quit() -> void:
 	get_tree().quit()
 
 
-func start_loading_screen(scene_path: String) -> void:
+func start_loading_scene(scene_path: String) -> void:
 	ResourceLoader.load_threaded_request(scene_path)
 	currently_loading_scene = scene_path
 
@@ -81,3 +87,4 @@ func change_scene() -> void:
 	get_tree().current_scene = new_scene
 	currently_loading_scene = ""
 	current_scene = new_scene
+	game_state = game_state_on_loaded
