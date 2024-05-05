@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://tnib3k6ptbh1"]
+[gd_scene load_steps=20 format=3 uid="uid://tnib3k6ptbh1"]
 
 [ext_resource type="Script" path="res://maze/level_manager.gd" id="1_ec1je"]
 [ext_resource type="TileSet" uid="uid://ckgua88mvwg6x" path="res://maze/maze_tileset.tres" id="2_2pwfs"]
 [ext_resource type="Theme" uid="uid://cbwv5lf36i55d" path="res://gui/gui_theme.tres" id="2_r7os5"]
 [ext_resource type="PackedScene" uid="uid://ctwaf51ulv563" path="res://creatures/muncher/muncher.tscn" id="2_sc86c"]
 [ext_resource type="Script" path="res://maze/DotsRemainingUI.gd" id="3_k3xfx"]
+[ext_resource type="Script" path="res://gui/highscore_label.gd" id="4_otd23"]
 [ext_resource type="PackedScene" uid="uid://b2h2rjwefxke8" path="res://creatures/enemies/enemy.tscn" id="4_uir3e"]
 [ext_resource type="Script" path="res://creatures/enemies/ambusher/ambusher.gd" id="5_gwspy"]
 [ext_resource type="Script" path="res://creatures/enemies/strategist/strategist.gd" id="6_l7bjv"]
@@ -81,13 +82,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/ScoreContainer"]
+[node name="ScoreTextLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/ScoreContainer"]
 layout_mode = 2
 theme = ExtResource("2_r7os5")
 theme_type_variation = &"LabelGameplay"
 text = "Score"
 
-[node name="Label2" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/ScoreContainer"]
+[node name="ScoreLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/ScoreContainer"]
 layout_mode = 2
 theme = ExtResource("2_r7os5")
 theme_type_variation = &"LabelGameplay"
@@ -103,18 +104,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/HighScoreContainer"]
+[node name="HighscoreTextLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/HighScoreContainer"]
 layout_mode = 2
 theme = ExtResource("2_r7os5")
 theme_type_variation = &"LabelGameplay"
 text = "Highscore"
 
-[node name="Label2" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/HighScoreContainer"]
+[node name="HighscoreLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/HighScoreContainer"]
 layout_mode = 2
 theme = ExtResource("2_r7os5")
 theme_type_variation = &"LabelGameplay"
 text = "10000000"
-script = ExtResource("3_k3xfx")
+script = ExtResource("4_otd23")
 
 [node name="VSpacer3" type="Control" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
 layout_mode = 2
