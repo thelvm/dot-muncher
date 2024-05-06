@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelParameters" load_steps=2 format=3 uid="uid://wb1opmxl2xud"]
+
+[ext_resource type="Script" path="res://scripts/level_parameters.gd" id="1_netp0"]
+
+[resource]
+script = ExtResource("1_netp0")
+hunt_time = 20
+scatter_time = 10
+will_scatter = true
+panic_time = 10
+will_panic = true

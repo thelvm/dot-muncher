@@ -6,12 +6,14 @@ const GAME_STATE_PAUSED = 2
 const GAME_STATE_GAME_OVER = 3
 
 var game_state: int = GAME_STATE_MAIN_MENU
+
 var score: int = 0
 var highscores_save_data_path: String = "res://highscores_save_data.tres"
 var highscores_save_data: HighscoreSaveData
+var is_hisghscore: bool = false
 
 var main_menu_scene_path := "res://gui/main_menu/main_menu.tscn"
-var maze_scene_path := "res://maze/maze.tscn"
+var maze_scene_path := "res://maze/gameplay.tscn"
 
 var current_scene: Node = null
 var currently_loading_scene := ""
@@ -51,6 +53,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func score_points(points: int) -> int:
 	score += points
+	is_hisghscore = score > highscores_save_data.get_highscore_points()
 	return score
 
 
@@ -58,6 +61,7 @@ func start_playing() -> void:
 	start_loading_scene(maze_scene_path)
 	game_state_on_loaded = GAME_STATE_PLAYING
 	score = 0
+	is_hisghscore = false
 	get_tree().paused = false
 
 

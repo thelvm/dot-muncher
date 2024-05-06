@@ -1,0 +1,167 @@
+[gd_scene load_steps=16 format=3 uid="uid://tnib3k6ptbh1"]
+
+[ext_resource type="Script" path="res://maze/level_manager.gd" id="1_doqfw"]
+[ext_resource type="Resource" uid="uid://wb1opmxl2xud" path="res://maze/levels/level_1.tres" id="2_sbq8y"]
+[ext_resource type="Theme" uid="uid://cbwv5lf36i55d" path="res://gui/gui_theme.tres" id="2_uykpj"]
+[ext_resource type="Resource" uid="uid://noub55xiatts" path="res://maze/levels/level_2.tres" id="3_8ybdj"]
+[ext_resource type="Script" path="res://maze/DotsRemainingUI.gd" id="3_ylkac"]
+[ext_resource type="Script" path="res://gui/highscore_label.gd" id="4_g7s81"]
+[ext_resource type="Resource" uid="uid://bf1uaprhvqj0i" path="res://maze/levels/level_3.tres" id="4_gexa5"]
+[ext_resource type="PackedScene" uid="uid://r7fahttgrg50" path="res://maze/maze_tile_map.tscn" id="5_fy56l"]
+[ext_resource type="Resource" uid="uid://budwbv1lraw23" path="res://maze/levels/level_4.tres" id="5_iw84k"]
+[ext_resource type="Resource" uid="uid://chpktmb0axr6k" path="res://maze/levels/level_5.tres" id="6_017lv"]
+[ext_resource type="PackedScene" uid="uid://cfwancfu8ajok" path="res://gui/game_over/game_over_menu.tscn" id="6_qkvk3"]
+[ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause/pause_menu.tscn" id="7_5cwcc"]
+[ext_resource type="Resource" uid="uid://dkcvy5tiewwhg" path="res://maze/levels/level_6.tres" id="7_ltqof"]
+[ext_resource type="Shader" path="res://gui/main_menu/vhs.gdshader" id="8_ewv27"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fc0ek"]
+shader = ExtResource("8_ewv27")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 4.235
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.006
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00500005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.15
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Maze" type="Node"]
+script = ExtResource("1_doqfw")
+levels_parameters = Array[Resource("res://scripts/level_parameters.gd")]([ExtResource("2_sbq8y"), ExtResource("3_8ybdj"), ExtResource("4_gexa5"), ExtResource("5_iw84k"), ExtResource("6_017lv"), ExtResource("7_ltqof")])
+
+[node name="GameplayGuiLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="GameplayGuiLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.0352941, 0.0784314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameplayGuiLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uykpj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameplayGuiLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopHBox" type="HBoxContainer" parent="GameplayGuiLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+alignment = 1
+
+[node name="VSpacer" type="Control" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreContainer" type="VBoxContainer" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ScoreTextLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/ScoreContainer"]
+layout_mode = 2
+theme = ExtResource("2_uykpj")
+theme_type_variation = &"LabelGameplay"
+text = "Score"
+
+[node name="ScoreLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/ScoreContainer"]
+layout_mode = 2
+theme = ExtResource("2_uykpj")
+theme_type_variation = &"LabelGameplay"
+text = "10000000"
+script = ExtResource("3_ylkac")
+
+[node name="VSpacer2" type="Control" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/VBoxContainer"]
+layout_mode = 2
+text = "Level"
+
+[node name="LevelValueLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/VBoxContainer"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="VSpacer4" type="Control" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HighScoreContainer" type="VBoxContainer" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HighscoreTextLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/HighScoreContainer"]
+layout_mode = 2
+theme = ExtResource("2_uykpj")
+theme_type_variation = &"LabelGameplay"
+text = "Highscore"
+
+[node name="HighscoreLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/HighScoreContainer"]
+layout_mode = 2
+theme = ExtResource("2_uykpj")
+theme_type_variation = &"LabelGameplay"
+text = "10000000"
+script = ExtResource("4_g7s81")
+
+[node name="VSpacer3" type="Control" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MazeSpacer" type="Control" parent="GameplayGuiLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomHBox" type="HBoxContainer" parent="GameplayGuiLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="MazeLayer" type="CanvasLayer" parent="."]
+
+[node name="MazeTileMap" parent="MazeLayer" instance=ExtResource("5_fy56l")]
+
+[node name="OverlayGUILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GameOverMenu" parent="OverlayGUILayer" instance=ExtResource("6_qkvk3")]
+visible = false
+
+[node name="PauseMenu" parent="OverlayGUILayer" instance=ExtResource("7_5cwcc")]
+visible = false
+
+[node name="OverlayShader" type="ColorRect" parent="OverlayGUILayer"]
+material = SubResource("ShaderMaterial_fc0ek")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -3,6 +3,7 @@ extends Control
 var display_score: int = 0: set = _set_display_score
 
 @onready var score_value_label: Label = %ScoreValueLabel
+@onready var new_highscore_label: Label = %NewHighscoreLabel
 
 
 func _process(_delta: float) -> void:
@@ -16,6 +17,7 @@ func animate_score() -> void:
 func _on_visibility_changed() -> void:
 	if visible and score_value_label:
 		$AnimationPlayer.play("GameOver")
+		new_highscore_label.modulate = Color.TRANSPARENT
 
 
 func _on_retry_button_pressed() -> void:
@@ -33,3 +35,8 @@ func _on_quit_button_pressed() -> void:
 func _set_display_score(new_value: int) -> void:
 	score_value_label.text = str(new_value)
 	display_score = new_value
+
+
+func check_if_hisghscore() -> void:
+	if GameManager.is_hisghscore:
+		new_highscore_label.modulate =  Color.WHITE
