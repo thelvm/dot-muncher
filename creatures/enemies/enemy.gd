@@ -19,6 +19,8 @@ var _speed_panic: float
 var _speed_go_home: float
 var _home_entrance_reached: bool
 
+static var eaten_this_vulnerable_state: int = 0
+
 @onready var _offensive_hitbox: Area2D = $OffensiveHitbox
 @onready var _hitbox: Area2D = $Hitbox
 
@@ -36,11 +38,10 @@ func _physics_process(delta: float) -> void:
 		if _home_entrance_reached:
 			change_state(STATE_HUNT)
 
-	if _current_state == STATE_HUNT and _reached_intersection:
-		_update_hunt_target()
-
 	_update_next_intersetion_coordinates()
 	_update_reached_intersection()
+	if _current_state == STATE_HUNT and _reached_intersection:
+		_update_hunt_target()
 	_update_best_direction()
 	_move(delta)
 
@@ -128,4 +129,6 @@ func _set_target(new_value: Vector2) -> void:
 
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
+	eaten_this_vulnerable_state += 1
+	GameManager.score_points((2 ** eaten_this_vulnerable_state) * 100)
 	change_state(STATE_GO_HOME)

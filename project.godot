@@ -45,7 +45,6 @@ folder_colors={
 "res://creatures/enemies/coward/": "orange",
 "res://creatures/enemies/strategist/": "pink",
 "res://creatures/muncher/": "green",
-"res://debug_utils/": "gray",
 "res://gui/": "teal",
 "res://maze/": "pink",
 "res://scripts/": "gray"

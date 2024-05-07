@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_n0pdg")
+intial_state = 0
 hunt_time = 20
-scatter_time = 7
+scatter_time = 0
+will_scatter = false
 panic_time = 10
+will_panic = true

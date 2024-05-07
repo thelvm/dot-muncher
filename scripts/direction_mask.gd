@@ -7,7 +7,7 @@ const RIGHT = 0b0010
 const DOWN = 0b0100
 const LEFT = 0b1000
 
-var bitmask: int = 0
+@export_flags("UP:1", "RIGHT:2", "DOWN:4", "LEFT:8") var bitmask: int = 0
 
 func _init(source_vec2: Vector2 = Vector2.ZERO) -> void:
 	bitmask = from_vector2(source_vec2)

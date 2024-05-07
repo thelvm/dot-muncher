@@ -6,7 +6,7 @@
 
 [node name="PowerUp" instance=ExtResource("1_ab4xd")]
 script = ExtResource("2_1q6je")
-point_value = 100
+point_value = 50
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(-4.76837e-07, -4.76837e-07)

@@ -4,8 +4,7 @@
 
 [resource]
 script = ExtResource("1_netp0")
+intial_state = 1
 hunt_time = 20
 scatter_time = 10
-will_scatter = true
 panic_time = 10
-will_panic = true

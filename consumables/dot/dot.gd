@@ -1,3 +1,4 @@
+class_name DotConsumable
 extends Consumable
 
 static var dots_in_level: int = 0

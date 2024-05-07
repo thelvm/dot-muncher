@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_s4e0v")
+intial_state = 1
 hunt_time = 20
 scatter_time = 7
 will_scatter = true

@@ -1,6 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://tnib3k6ptbh1"]
 
 [ext_resource type="Script" path="res://maze/level_manager.gd" id="1_doqfw"]
+[ext_resource type="Script" path="res://scripts/level_parameters.gd" id="2_jwoml"]
 [ext_resource type="Resource" uid="uid://wb1opmxl2xud" path="res://maze/levels/level_1.tres" id="2_sbq8y"]
 [ext_resource type="Theme" uid="uid://cbwv5lf36i55d" path="res://gui/gui_theme.tres" id="2_uykpj"]
 [ext_resource type="Resource" uid="uid://noub55xiatts" path="res://maze/levels/level_2.tres" id="3_8ybdj"]
@@ -13,35 +14,17 @@
 [ext_resource type="PackedScene" uid="uid://cfwancfu8ajok" path="res://gui/game_over/game_over_menu.tscn" id="6_qkvk3"]
 [ext_resource type="PackedScene" uid="uid://bsxp4tseb7kce" path="res://gui/pause/pause_menu.tscn" id="7_5cwcc"]
 [ext_resource type="Resource" uid="uid://dkcvy5tiewwhg" path="res://maze/levels/level_6.tres" id="7_ltqof"]
-[ext_resource type="Shader" path="res://gui/main_menu/vhs.gdshader" id="8_ewv27"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fc0ek"]
-shader = ExtResource("8_ewv27")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.4
-shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.3
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = false
-shader_parameter/roll = false
-shader_parameter/roll_speed = 4.235
-shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.006
-shader_parameter/noise_opacity = 0.0
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.00500005
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.15
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+[sub_resource type="Resource" id="Resource_c0tek"]
+script = ExtResource("2_jwoml")
+intial_state = 0
+hunt_time = 10
+scatter_time = 0
+panic_time = 60
 
-[node name="Maze" type="Node"]
+[node name="Maze" type="Node" groups=["level_manager"]]
 script = ExtResource("1_doqfw")
-levels_parameters = Array[Resource("res://scripts/level_parameters.gd")]([ExtResource("2_sbq8y"), ExtResource("3_8ybdj"), ExtResource("4_gexa5"), ExtResource("5_iw84k"), ExtResource("6_017lv"), ExtResource("7_ltqof")])
+levels_parameters = Array[ExtResource("2_jwoml")]([ExtResource("2_sbq8y"), ExtResource("3_8ybdj"), ExtResource("4_gexa5"), ExtResource("5_iw84k"), ExtResource("6_017lv"), ExtResource("7_ltqof"), SubResource("Resource_c0tek")])
 
 [node name="GameplayGuiLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -106,6 +89,7 @@ layout_mode = 2
 text = "Level"
 
 [node name="LevelValueLabel" type="Label" parent="GameplayGuiLayer/MarginContainer/VBoxContainer/TopHBox/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1
@@ -156,12 +140,3 @@ visible = false
 
 [node name="PauseMenu" parent="OverlayGUILayer" instance=ExtResource("7_5cwcc")]
 visible = false
-
-[node name="OverlayShader" type="ColorRect" parent="OverlayGUILayer"]
-material = SubResource("ShaderMaterial_fc0ek")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2

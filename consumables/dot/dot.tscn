@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk4nj5wplw70o"]
+[gd_scene load_steps=4 format=3 uid="uid://dk4nj5wplw70o"]
 
 [ext_resource type="PackedScene" uid="uid://c2yqd6hbd0n2m" path="res://consumables/Consumable.tscn" id="1_l1rab"]
 [ext_resource type="Texture2D" uid="uid://dy8eaawxui3tg" path="res://consumables/dot/dot.png" id="1_twhxy"]
+[ext_resource type="Script" path="res://consumables/dot/dot.gd" id="2_ohvkg"]
 
 [node name="Dot" instance=ExtResource("1_l1rab")]
+script = ExtResource("2_ohvkg")
 point_value = 10
 
 [node name="Sprite2D" parent="." index="1"]
