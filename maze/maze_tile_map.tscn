@@ -33,11 +33,23 @@ position = Vector2(16, 480)
 [node name="Scatter4" type="Marker2D" parent="."]
 position = Vector2(432, 480)
 
-[node name="Home" type="Marker2D" parent="."]
+[node name="HomeCenter" type="Marker2D" parent="."]
 position = Vector2(224, 232)
 
 [node name="HomeEntrance" type="Marker2D" parent="."]
 position = Vector2(224, 184)
+
+[node name="Home1" type="Marker2D" parent="."]
+position = Vector2(184, 232)
+
+[node name="Home2" type="Marker2D" parent="."]
+position = Vector2(208, 232)
+
+[node name="Home3" type="Marker2D" parent="."]
+position = Vector2(240, 232)
+
+[node name="Home4" type="Marker2D" parent="."]
+position = Vector2(264, 232)
 
 [node name="TeleporterLeft" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("2_70d3b")]
 position = Vector2(-24, 232)
@@ -69,21 +81,23 @@ position = Vector2(24, 448)
 
 [node name="Enemies" type="CanvasLayer" parent="."]
 
-[node name="Hunter" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Hunter" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(176, 256)
 muncher = NodePath("../../Player/Muncher")
 scatter_position = NodePath("../../Scatter1")
-home_position = NodePath("../../Home")
+home_position = NodePath("../../Home1")
+home_center_position = NodePath("../../HomeCenter")
 home_entrance_position = NodePath("../../HomeEntrance")
 tile_map = NodePath("../..")
 speed = 48.0
 
-[node name="Ambusher" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Ambusher" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(208, 256)
 script = ExtResource("5_8nk8g")
 muncher = NodePath("../../Player/Muncher")
 scatter_position = NodePath("../../Scatter2")
-home_position = NodePath("../../Home")
+home_position = NodePath("../../Home2")
+home_center_position = NodePath("../../HomeCenter")
 home_entrance_position = NodePath("../../HomeEntrance")
 tile_map = NodePath("../..")
 speed = 48.0
@@ -91,13 +105,14 @@ speed = 48.0
 [node name="Body" parent="Enemies/Ambusher" index="0"]
 texture = ExtResource("6_jn308")
 
-[node name="Strategist" parent="Enemies" node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Strategist" parent="Enemies" node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(240, 256)
 script = ExtResource("7_i6qek")
 partner = NodePath("../Hunter")
 muncher = NodePath("../../Player/Muncher")
 scatter_position = NodePath("../../Scatter3")
-home_position = NodePath("../../Home")
+home_position = NodePath("../../Home3")
+home_center_position = NodePath("../../HomeCenter")
 home_entrance_position = NodePath("../../HomeEntrance")
 tile_map = NodePath("../..")
 speed = 48.0
@@ -105,13 +120,14 @@ speed = 48.0
 [node name="Body" parent="Enemies/Strategist" index="0"]
 texture = ExtResource("8_xwlp5")
 
-[node name="Coward" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Coward" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(272, 256)
 script = ExtResource("9_n8pjm")
 cower_distance = 4
 muncher = NodePath("../../Player/Muncher")
 scatter_position = NodePath("../../Scatter4")
-home_position = NodePath("../../Home")
+home_position = NodePath("../../Home4")
+home_center_position = NodePath("../../HomeCenter")
 home_entrance_position = NodePath("../../HomeEntrance")
 tile_map = NodePath("../..")
 speed = 48.0
