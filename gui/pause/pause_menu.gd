@@ -2,7 +2,7 @@ extends Control
 
 
 func _process(_delta: float) -> void:
-	visible = GameManager.game_state == GameManager.GAME_STATE_PAUSED
+	visible = GameManager.current_game_state == GameManager.GameState.PAUSED
 
 
 

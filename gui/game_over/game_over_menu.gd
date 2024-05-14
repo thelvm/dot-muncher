@@ -7,7 +7,7 @@ var display_score: int = 0: set = _set_display_score
 
 
 func _process(_delta: float) -> void:
-	visible = GameManager.game_state == GameManager.GAME_STATE_GAME_OVER
+	visible = GameManager.current_game_state == GameManager.GameState.GAME_OVER
 
 
 func animate_score() -> void:

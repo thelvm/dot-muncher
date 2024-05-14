@@ -81,7 +81,7 @@ position = Vector2(24, 448)
 
 [node name="Enemies" type="CanvasLayer" parent="."]
 
-[node name="Hunter" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Hunter" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["creatures", "enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(176, 256)
 muncher = NodePath("../../Player/Muncher")
 scatter_position = NodePath("../../Scatter1")
@@ -91,7 +91,7 @@ home_entrance_position = NodePath("../../HomeEntrance")
 tile_map = NodePath("../..")
 speed = 48.0
 
-[node name="Ambusher" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Ambusher" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["creatures", "enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(208, 256)
 script = ExtResource("5_8nk8g")
 muncher = NodePath("../../Player/Muncher")
@@ -105,7 +105,7 @@ speed = 48.0
 [node name="Body" parent="Enemies/Ambusher" index="0"]
 texture = ExtResource("6_jn308")
 
-[node name="Strategist" parent="Enemies" node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Strategist" parent="Enemies" node_paths=PackedStringArray("partner", "muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["creatures", "enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(240, 256)
 script = ExtResource("7_i6qek")
 partner = NodePath("../Hunter")
@@ -120,7 +120,7 @@ speed = 48.0
 [node name="Body" parent="Enemies/Strategist" index="0"]
 texture = ExtResource("8_xwlp5")
 
-[node name="Coward" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["enemies"] instance=ExtResource("4_0ijfn")]
+[node name="Coward" parent="Enemies" node_paths=PackedStringArray("muncher", "scatter_position", "home_position", "home_center_position", "home_entrance_position", "tile_map") groups=["creatures", "enemies"] instance=ExtResource("4_0ijfn")]
 position = Vector2(272, 256)
 script = ExtResource("9_n8pjm")
 cower_distance = 4
@@ -137,7 +137,7 @@ texture = ExtResource("10_a03cb")
 
 [node name="Player" type="CanvasLayer" parent="."]
 
-[node name="Muncher" parent="Player" node_paths=PackedStringArray("tile_map") instance=ExtResource("11_wrf6e")]
+[node name="Muncher" parent="Player" node_paths=PackedStringArray("tile_map") groups=["creatures"] instance=ExtResource("11_wrf6e")]
 z_index = 1
 position = Vector2(224, 448)
 tile_map = NodePath("../..")

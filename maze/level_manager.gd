@@ -35,7 +35,7 @@ func start_panic() -> void:
 		scatter_timer.stop()
 	if panic_timer:
 		panic_timer.start()
-		_change_enemy_state(EnemyController.STATE_PANIC)
+		_change_enemy_state(EnemyController.State.PANIC)
 
 
 func configure_level() -> void:
@@ -83,10 +83,10 @@ func configure_level() -> void:
 	_change_enemy_state(levels_parameters[level_difficulty_index].intial_state)
 	
 	match levels_parameters[level_difficulty_index].intial_state:
-		EnemyController.STATE_HUNT:
+		EnemyController.State.HUNT:
 			if hunt_timer:
 				hunt_timer.start()
-		EnemyController.STATE_SCATTER:
+		EnemyController.State.SCATTER:
 			if scatter_timer:
 				scatter_timer.start()
 
@@ -94,21 +94,21 @@ func configure_level() -> void:
 # Callback for when the hunt timer times out. Starts the scatter state.
 func _on_hunt_timer_timeout() -> void:
 	scatter_timer.start()
-	_change_enemy_state(EnemyController.STATE_SCATTER)
+	_change_enemy_state(EnemyController.State.SCATTER)
 
 # Callback for when the scatter timer times out. Starts the hunt state.
 func _on_scatter_timer_timeout() -> void:
 	hunt_timer.start()
-	_change_enemy_state(EnemyController.STATE_HUNT)
+	_change_enemy_state(EnemyController.State.HUNT)
 
 # Callback for when the panic timer times out. Starts the hunt state.
 func _on_panic_timer_timeout() -> void:
 	hunt_timer.start()
-	_change_enemy_state(EnemyController.STATE_HUNT)
+	_change_enemy_state(EnemyController.State.HUNT)
 
 
 func _change_enemy_state(new_state: int) -> void:
-	if new_state != EnemyController.STATE_GO_HOME:
+	if new_state != EnemyController.State.GO_HOME:
 		EnemyController.eaten_this_vulnerable_state = 0
 	get_tree().call_group("enemies", "change_state", new_state)
 

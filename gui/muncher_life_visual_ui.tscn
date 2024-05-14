@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqfxco5frmihu"]
+
+[ext_resource type="Texture2D" uid="uid://dctqif20p1xw8" path="res://muncher-pixilart.png" id="1_h5a0y"]
+
+[node name="MuncherLifeVisualUI" type="AspectRatioContainer"]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_h5a0y")
+stretch_mode = 5

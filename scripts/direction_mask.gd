@@ -9,39 +9,50 @@ const LEFT = 0b1000
 
 @export_flags("UP:1", "RIGHT:2", "DOWN:4", "LEFT:8") var bitmask: int = 0
 
-func _init(source_vec2: Vector2 = Vector2.ZERO) -> void:
-	bitmask = from_vector2(source_vec2)
+func _init(from: Variant = null) -> void:
+	if from is Vector2:
+		bitmask = DirectionMask.vector2_to_bitmask(from)
+		return
+	if from is DirectionMask:
+		bitmask = from.bitmask
+		return
+	if from is int:
+		if 0 < from and from <= 0b1111:
+			bitmask = from
 
 
-static func new_from_vector2(source_vector2: Vector2) -> DirectionMask:
-	var new_direction_mask := DirectionMask.new()
-	new_direction_mask.from_vector2(source_vector2)
-	return new_direction_mask
-
-
-static func new_from_direction_mask(source_direction_mask: DirectionMask) -> DirectionMask:
-	var new_direction_mask := DirectionMask.new()
-	new_direction_mask.bitmask =  source_direction_mask.bitmask
-	return new_direction_mask
-
-
-static func new_from_bitmask(source_direction_mask: DirectionMask) -> DirectionMask:
-	var new_direction_mask := DirectionMask.new()
-	new_direction_mask.bitmask =  source_direction_mask.bitmask
-	return new_direction_mask
+static func vector2_to_bitmask(from: Vector2) -> int:
+	var new_bitmask := 0
+	new_bitmask += UP if from.y < 0 else 0
+	new_bitmask += RIGHT if from.x > 0 else 0
+	new_bitmask += DOWN if from.y > 0 else 0
+	new_bitmask += LEFT if from.x < 0 else 0
+	return new_bitmask
 
 
 ## Checks if direction(s) bit is set in the mask.
-func has_direction(direction: int) -> bool:
-	return (bitmask & direction) > 0
+func has_direction(direction: Variant) -> bool:
+	if direction is int:
+		return (bitmask & direction) > 0
+	if direction is Vector2:
+		return (bitmask & DirectionMask.vector2_to_bitmask(direction)) > 0
+	return false
 
 
-func add_direction(direction: int) -> void:
-	bitmask |= direction
+func add_direction(direction: Variant) -> void:
+	if direction is int:
+		if 0 < direction and direction <= 0b1111:
+			bitmask |= direction
+	if direction is Vector2:
+		bitmask |= DirectionMask.vector2_to_bitmask(direction)
 
 
-func remove_direction(direction: int) -> void:
-	bitmask &= ~direction
+func remove_direction(direction: Variant) -> void:
+	if direction is int:
+		if 0 < direction and direction <= 0b1111:
+			bitmask &= ~direction
+	if direction is Vector2:
+		bitmask &= ~DirectionMask.vector2_to_bitmask(direction)
 
 
 func to_vector2() -> Vector2:
@@ -55,19 +66,6 @@ func to_vector2() -> Vector2:
 		if has_direction(RIGHT):
 			direction.x += 1
 		return direction
-
-
-func from_vector2(vec: Vector2) -> int:
-	bitmask = NONE
-	if vec.y < 0:
-		add_direction(UP)
-	elif vec.y > 0:
-		add_direction(DOWN)
-	if vec.x > 0:
-		add_direction(RIGHT)
-	elif vec.x < 0:
-		add_direction(LEFT)
-	return bitmask
 
 
 ## Returns true is direction is the oppposite of this direction.

@@ -1,12 +1,16 @@
 extends Node
 
-const GAME_STATE_MAIN_MENU = 0
-const GAME_STATE_PLAYING = 1
-const GAME_STATE_PAUSED = 2
-const GAME_STATE_GAME_OVER = 3
+enum GameState {
+	MAIN_MENU,
+	PLAYING,
+	PAUSED,
+	GAME_OVER,
+}
 
-var game_state: int = GAME_STATE_MAIN_MENU
+var current_game_state: GameState = GameState.MAIN_MENU
 
+var initial_lives: int = 3
+var lifes_left: int = 0
 var score: int = 0
 var highscores_save_data_path: String = "res://highscores_save_data.tres"
 var highscores_save_data: HighscoreSaveData
@@ -17,7 +21,7 @@ var maze_scene_path := "res://maze/gameplay.tscn"
 
 var current_scene: Node = null
 var currently_loading_scene := ""
-var game_state_on_loaded: int
+var game_state_on_loaded: GameState
 
 
 func _enter_tree() -> void:
@@ -37,17 +41,17 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if currently_loading_scene:
 		if ResourceLoader.load_threaded_get_status(currently_loading_scene) == ResourceLoader.THREAD_LOAD_LOADED:
-			call_deferred("change_scene")
+			call_deferred("_change_scene")
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		match game_state:
-			GAME_STATE_PAUSED:
+		match current_game_state:
+			GameState.PAUSED:
 				unpause()
-			GAME_STATE_PLAYING:
+			GameState.PLAYING:
 				pause()
-			GAME_STATE_MAIN_MENU, GAME_STATE_GAME_OVER:
+			GameState.MAIN_MENU, GameState.GAME_OVER:
 				quit()
 
 
@@ -59,30 +63,39 @@ func score_points(points: int) -> int:
 
 func start_playing() -> void:
 	start_loading_scene(maze_scene_path)
-	game_state_on_loaded = GAME_STATE_PLAYING
+	game_state_on_loaded = GameState.PLAYING
 	score = 0
 	is_hisghscore = false
+	lifes_left = initial_lives
 	get_tree().paused = false
 
 
 func pause() -> void:
-	game_state = GAME_STATE_PAUSED
+	current_game_state = GameState.PAUSED
 	get_tree().paused = true
 
 
 func unpause() -> void:
-	game_state = GAME_STATE_PLAYING
+	current_game_state = GameState.PLAYING
 	get_tree().paused = false
+
+
+func lose_life() -> void:
+	lifes_left -= 1
+	if lifes_left <= 0:
+		game_over()
+	else:
+		get_tree().call_group("creatures", "respawn")
 
 
 func game_over() -> void:
 	highscores_save_data.add_highscore("player", score)
-	game_state = GAME_STATE_GAME_OVER
+	current_game_state = GameState.GAME_OVER
 	get_tree().paused = true
 
 
 func return_to_main_menu() -> void:
-	game_state_on_loaded = GAME_STATE_MAIN_MENU
+	game_state_on_loaded = GameState.MAIN_MENU
 	start_loading_scene(main_menu_scene_path)
 
 
@@ -96,7 +109,7 @@ func start_loading_scene(scene_path: String) -> void:
 	currently_loading_scene = scene_path
 
 
-func change_scene() -> void:
+func _change_scene() -> void:
 	current_scene.free()
 	var new_scene_resource := ResourceLoader.load_threaded_get(currently_loading_scene) as PackedScene
 	var new_scene := new_scene_resource.instantiate()
@@ -104,4 +117,4 @@ func change_scene() -> void:
 	get_tree().current_scene = new_scene
 	currently_loading_scene = ""
 	current_scene = new_scene
-	game_state = game_state_on_loaded
+	current_game_state = game_state_on_loaded
